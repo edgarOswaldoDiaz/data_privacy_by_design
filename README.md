@@ -22,32 +22,6 @@ Temario
 - OWASP Top 10 for LLM Applications 
 - OWASP Agentic AI – Security 
 
-#### Diagrama de contexto 
-
-                    GOBIERNO DE DATOS E IA
-                              │
-        ┌─────────────────────┼─────────────────────┐
-        │                     │                     │
-     PRIVACIDAD            SEGURIDAD               IA
-        │                     │                     │ 
-   LFPDPPP                ISO 27001             ISO 42001
-   GDPR                   ISO 27002             ISO 23894
-   ISO 27701              ISO 27018             NIST AI RMF
-   ISO 31700              NIST CSF              NIST GenAI
-   OECD Privacy           Zero Trust            OECD AI
-        │                     │                     │
-        └─────────────────────┼─────────────────────┘
-                              │
-                     DATOS CORPORATIVOS
-                              │
-       ┌──────────────┬───────┴────────┬──────────────┐
-       │              │                │              │
-      BI             BA          DATA SCIENCE      IA/AGENTES
-       │              │                │              │
-   Dashboards      Analytics        ML/Models       LLM/RAG
-   Reporting       Predictive       Training        Agents
-
-
 ________________________
 ####  Maestría en Ciencia de Datos | Universidad de la Ciudad de Aguascalientes
 
