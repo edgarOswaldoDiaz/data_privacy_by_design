@@ -22,6 +22,8 @@ Temario
 - OWASP Top 10 for LLM Applications 
 - OWASP Agentic AI – Security 
 
+[Diagrama de contexto](assets/Diagrama_contexto.png)
+
 ________________________
 ####  Maestría en Ciencia de Datos | Universidad de la Ciudad de Aguascalientes
 
