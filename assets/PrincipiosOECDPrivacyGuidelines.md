@@ -10,7 +10,7 @@ En última instancia, la privacidad debe considerarse no como una restricción p
 
 El objetivo de este ensayo es explicar el significado de estos principios y, especialmente, mostrar cómo pueden convertirse en prácticas concretas de gobierno y protección de datos dentro del ciclo de vida analítico y de inteligencia artificial.
 
-## 1. Principio de limitación de la recopilación
+#### 1. Principio de limitación de la recopilación
 
 El primer principio establece que la recopilación de datos personales debe tener límites y que los datos deben obtenerse mediante medios legales y justos y, cuando corresponda, con el conocimiento o consentimiento de la persona. 
 
@@ -22,7 +22,7 @@ En Data Science, la limitación de recopilación debe incorporarse desde la etap
 
 Una implementación práctica puede consistir en establecer un proceso de **data minimization** que incluya inventario de datos, clasificación por sensibilidad, justificación de cada atributo y revisión periódica de los datos que realmente se utilizan.
 
-## 2. Principio de calidad de los datos
+#### 2. Principio de calidad de los datos
 
 El principio de calidad establece que los datos personales deben ser pertinentes para el propósito para el cual serán utilizados y, en la medida necesaria, deben ser exactos, completos y mantenerse actualizados. 
 
@@ -34,7 +34,7 @@ Por ello, implementar este principio implica establecer controles de **data qual
 
 Una práctica especialmente relevante es asociar los datos críticos a un propietario o *data owner*, definir criterios de calidad y establecer mecanismos para identificar cuándo un dato deja de ser válido para determinado uso.
 
-## 3. Principio de especificación del propósito
+#### 3. Principio de especificación del propósito
 
 La especificación del propósito exige que las finalidades de la recopilación sean determinadas, como máximo, en el momento de obtener los datos y que los usos posteriores se limiten a esas finalidades o a otras compatibles que sean especificadas cuando cambie el propósito. 
 
@@ -50,7 +50,7 @@ En Data Science, esta práctica puede materializarse mediante un **registro de c
 
 En IA generativa y agéntica, el principio adquiere especial importancia debido a que un mismo modelo puede utilizar información para múltiples funciones. La organización debe definir explícitamente si los datos pueden emplearse para inferencia, generación de contenido, recuperación mediante RAG, entrenamiento, evaluación, monitoreo u otras finalidades.
 
-## 4. Principio de limitación del uso
+#### 4. Principio de limitación del uso
 
 El principio de limitación del uso establece que los datos personales no deben divulgarse, ponerse a disposición o utilizarse para finalidades distintas de aquellas especificadas, salvo que exista consentimiento o autoridad legal que lo permita. 
 
@@ -64,7 +64,7 @@ En IA generativa, el principio puede implementarse mediante políticas que impid
 
 En IA agéntica, la limitación del uso debe extenderse a las **acciones** del agente. Un agente puede tener capacidad para consultar bases de datos, ejecutar procesos, enviar mensajes o modificar registros. Por tanto, el control no debe limitarse al acceso al dato, sino también al alcance de las acciones que pueden realizarse con ese dato.
 
-## 5. Principio de salvaguardas de seguridad
+#### 5. Principio de salvaguardas de seguridad
 
 El principio de seguridad exige proteger los datos personales mediante salvaguardas razonables frente a riesgos como pérdida, acceso no autorizado, destrucción, uso, modificación o divulgación. 
 
@@ -78,7 +78,7 @@ En IA generativa aparecen riesgos adicionales, como la exposición accidental de
 
 La seguridad, por tanto, debe contemplarse como una propiedad transversal del ciclo de vida del dato y no solamente como una función del departamento de tecnología.
 
-## 6. Principio de apertura
+#### 6. Principio de apertura
 
 El principio de apertura establece que debe existir una política general de transparencia respecto de las prácticas y políticas relacionadas con los datos personales. Asimismo, deben existir medios accesibles para conocer la existencia y naturaleza de los datos tratados, sus principales finalidades y la identidad del responsable. 
 
@@ -90,7 +90,7 @@ En el contexto de IA, la transparencia debe ampliarse. Cuando un sistema utiliza
 
 Esta transparencia también es importante internamente. Los equipos de BI, Data Science e IA deberían saber qué fuentes de datos están autorizadas, qué restricciones tienen y quién puede acceder a ellas.
 
-## 7. Principio de participación individual
+#### 7. Principio de participación individual
 
 El principio de participación individual reconoce derechos de las personas respecto de sus datos. Entre ellos se encuentran conocer si un responsable posee información sobre ellas, obtener acceso a dicha información, recibir explicaciones cuando una solicitud sea rechazada y poder cuestionar los datos, incluyendo su rectificación, actualización, completitud o eliminación cuando corresponda. 
 
@@ -102,7 +102,7 @@ Por esta razón, el gobierno de datos debe incorporar capacidades de **data line
 
 En sistemas de IA, además, deben considerarse las consecuencias que la modificación de los datos fuente puede tener sobre procesos analíticos posteriores, bases vectoriales, índices de recuperación, datasets de entrenamiento y mecanismos de evaluación.
 
-## 8. Principio de accountability o responsabilidad
+#### 8. Principio de accountability o responsabilidad
 
 El principio de accountability establece que el responsable del tratamiento debe responder por el cumplimiento de las medidas destinadas a materializar los demás principios. 
 
@@ -127,7 +127,7 @@ Para una organización que utiliza BI, Data Science e IA, accountability puede o
 * métricas de cumplimiento;
 * mecanismos de supervisión y mejora continua.
 
-## 9. Cómo convertir los ocho principios en un modelo operativo
+#### 9. Cómo convertir los ocho principios en un modelo operativo
 
 Los principios de la OCDE no deben implementarse como controles aislados. Su verdadero valor aparece cuando se incorporan al ciclo de vida completo de los datos.
 
@@ -143,7 +143,7 @@ En consecuencia, un modelo de implementación podría representarse conceptualme
 
 La característica fundamental de este modelo es que la privacidad no ocurre únicamente cuando se recolecta la información. Debe permanecer presente durante todo su ciclo de vida.
 
-## 10. Aplicación específica a IA generativa y agéntica
+#### 10. Aplicación específica a IA generativa y agéntica
 
 La llegada de la IA generativa y de los sistemas agénticos introduce nuevas dimensiones para los principios de la OCDE.
 
@@ -155,15 +155,7 @@ Los sistemas agénticos añaden otra dimensión: el agente no solamente procesa 
 
 En este sentido, los principios de la OCDE pueden actuar como una capa fundamental de gobierno para sistemas de IA, independientemente de si la implementación concreta utiliza machine learning clásico, modelos generativos, RAG, agentes autónomos u otras tecnologías emergentes.
 
-
-
-Con gusto. A continuación presento un caso de uso ficticio diseñado para mostrar que los **OECD Privacy Guidelines** pueden funcionar como un mecanismo de generación de valor: reducen riesgos, mejoran la calidad de los datos, aumentan la confianza y permiten escalar soluciones de ciencia de datos e IA de manera más controlada. La OCDE señala expresamente que la privacidad puede actuar como un habilitador del intercambio de datos y de la generación de valor económico y social. ([OECD][1])
-
-# Caso de uso: Cómo los OECD Privacy Guidelines generan valor en proyectos de Ciencia de Datos e Inteligencia Artificial Generativa y Agéntica
-
-## 1. Introducción: de la privacidad como obligación a la privacidad como generador de valor
-
-Imaginemos una empresa ficticia llamada **RetailNova**, una compañía latinoamericana dedicada al comercio omnicanal de productos para el hogar. RetailNova opera tiendas físicas, comercio electrónico, aplicaciones móviles y un programa de fidelización con millones de interacciones de clientes.
+#### Caso de uso: La empresa **RetailNova**, una compañía latinoamericana dedicada al comercio omnicanal de productos para el hogar. RetailNova opera tiendas físicas, comercio electrónico, aplicaciones móviles y un programa de fidelización con millones de interacciones de clientes.
 
 La dirección de la empresa decide acelerar su estrategia de transformación basada en datos mediante tres iniciativas:
 
