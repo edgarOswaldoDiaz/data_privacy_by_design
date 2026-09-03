@@ -8,17 +8,6 @@ Para una organización moderna, cumplir con estos principios significa pasar de 
 
 En última instancia, la privacidad debe considerarse no como una restricción para la innovación, sino como una condición para que la innovación basada en datos sea sostenible y confiable. La propia OCDE destaca que una protección de privacidad adecuada contribuye a generar confianza y facilita un entorno en el que los datos pueden utilizarse y compartirse de manera responsable. ([OECD][1])
 
-
-# Los Principios de Privacidad de la OCDE y su implementación en Business Intelligence, Data Science e Inteligencia Artificial
-
-## Introducción
-
-La transformación digital ha convertido los datos personales en uno de los activos más importantes para las organizaciones. Los procesos de Business Intelligence (BI), Business Analytics, Data Science, inteligencia artificial generativa e inteligencia artificial agéntica dependen cada vez más de grandes volúmenes de información para identificar patrones, generar conocimiento, automatizar decisiones y crear nuevos servicios. Sin embargo, esta capacidad de procesamiento también incrementa los riesgos relacionados con la privacidad, la confidencialidad, la seguridad y el uso indebido de los datos.
-
-En este contexto, las **OECD Guidelines Governing the Protection of Privacy and Transborder Flows of Personal Data**, conocidas como OECD Privacy Guidelines, constituyen uno de los principales referentes internacionales para establecer una gobernanza responsable de los datos personales. Las directrices fueron adoptadas originalmente en 1980 y revisadas en 2013. La actualización de 2013 mantuvo los principios fundamentales, pero reforzó especialmente el enfoque de gestión de riesgos, la responsabilidad organizacional y la dimensión internacional de los flujos de datos. ([OECD][2])
-
-La relevancia de estas directrices para las organizaciones modernas reside en que no dependen de una tecnología específica. Por su carácter tecnológicamente neutral, pueden aplicarse tanto a bases de datos tradicionales y plataformas de BI como a modelos de machine learning, grandes modelos de lenguaje, sistemas de IA generativa y agentes autónomos. La OCDE identifica ocho principios fundamentales: **limitación de la recopilación, calidad de los datos, especificación del propósito, limitación del uso, salvaguardas de seguridad, apertura, participación individual y responsabilidad (accountability)**. ([OECD][1])
-
 El objetivo de este ensayo es explicar el significado de estos principios y, especialmente, mostrar cómo pueden convertirse en prácticas concretas de gobierno y protección de datos dentro del ciclo de vida analítico y de inteligencia artificial.
 
 ## 1. Principio de limitación de la recopilación
