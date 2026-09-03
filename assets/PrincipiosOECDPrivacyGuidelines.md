@@ -173,7 +173,7 @@ El caso de RetailNova permite observar que estos principios no solamente ayudan 
 
 ---
 
-# 2. La situación inicial de RetailNova
+#### Situación inicial de RetailNova
 
 Antes de adoptar un programa formal de privacidad, RetailNova tiene información distribuida en numerosos sistemas:
 
@@ -202,7 +202,7 @@ RetailNova decide entonces adoptar los OECD Privacy Guidelines como marco concep
 
 ---
 
-# 3. Principio 1: limitación de la recopilación
+#### Principio 1: limitación de la recopilación
 
 El primer cambio consiste en analizar qué datos son realmente necesarios.
 
@@ -234,7 +234,7 @@ El principio de privacidad se convierte así en una herramienta de **optimizaci�
 
 ---
 
-# 4. Principio 2: calidad de los datos
+#### Principio 2: calidad de los datos
 
 Durante la preparación del modelo, el equipo descubre que diferentes sistemas tienen versiones inconsistentes de los clientes.
 
@@ -265,7 +265,7 @@ Un principio originalmente relacionado con privacidad termina generando valor di
 
 ---
 
-# 5. Principio 3: especificación del propósito
+#### Principio 3: especificación del propósito
 
 RetailNova establece posteriormente un catálogo de casos de uso.
 
@@ -302,7 +302,7 @@ En proyectos de IA, esta capacidad es especialmente importante porque evita que 
 
 ---
 
-# 6. Principio 4: limitación del uso
+#### 6. Principio 4: limitación del uso
 
 La empresa implementa controles para que el acceso a los datos dependa del propósito.
 
@@ -328,7 +328,7 @@ Esto produce un concepto muy importante para la arquitectura de datos:
 
 ---
 
-# 7. Principio 5: salvaguardas de seguridad
+#### Principio 5: salvaguardas de seguridad
 
 RetailNova incorpora controles técnicos y organizacionales alrededor de los proyectos de IA.
 
@@ -373,7 +373,7 @@ La propia OCDE vincula su enfoque de privacidad con una gestión basada en riesg
 
 ---
 
-# 8. Principio 6: apertura
+#### Principio 6: apertura
 
 RetailNova desarrolla un modelo de transparencia.
 
@@ -402,7 +402,7 @@ La OCDE identifica precisamente la confianza como una condición importante para
 
 ---
 
-# 9. Principio 7: participación individual
+#### 9. Principio 7: participación individual
 
 RetailNova establece mecanismos para atender solicitudes de los individuos respecto de sus datos.
 
@@ -433,7 +433,7 @@ Por tanto, una inversión que inicialmente parecía destinada solamente al cumpl
 
 ---
 
-# 10. Principio 8: accountability
+#### 10. Principio 8: accountability
 
 Finalmente, RetailNova convierte todos los principios anteriores en un programa formal de responsabilidad.
 
@@ -465,7 +465,7 @@ La privacidad deja de depender de la buena voluntad de los equipos y se conviert
 
 ---
 
-# 11. El proyecto de IA generativa
+#### 11. El proyecto de IA generativa
 
 Una vez establecido el marco, RetailNova desarrolla un asistente denominado **NovaAssist**.
 
