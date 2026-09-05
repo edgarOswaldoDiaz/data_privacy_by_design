@@ -110,7 +110,7 @@ Este principio es posiblemente el más importante desde una perspectiva de gobie
 
 La revisión de 2013 incorporó específicamente una tercera parte dedicada a la implementación de accountability. La OCDE establece que el responsable debe contar con un **Privacy Management Programme**, adaptado a la estructura, escala, volumen y sensibilidad de sus operaciones; basado en evaluación de riesgos; integrado en la estructura de gobierno; con mecanismos de supervisión; planes de respuesta ante incidentes; y procesos de monitoreo y evaluación periódica. 
 
-La OCDE también señala que estas salvaguardas pueden incluir disposiciones contractuales, capacitación del personal, auditorías y evaluaciones de impacto de privacidad. ([OECD][3])
+La OCDE también señala que estas salvaguardas pueden incluir disposiciones contractuales, capacitación del personal, auditorías y evaluaciones de impacto de privacidad. 
 
 Para una organización que utiliza BI, Data Science e IA, accountability puede operacionalizarse mediante:
 
@@ -167,7 +167,7 @@ A primera vista, el proyecto parece principalmente tecnológico. Sin embargo, la
 
 ¿qué datos puede utilizar?, ¿para qué finalidad?, ¿cuáles son necesarios?, ¿quién puede acceder a ellos?, ¿cómo se protege la información?, ¿cómo demuestra la organización que está actuando responsablemente?, y ¿cómo evita que un sistema de IA utilice información personal de manera inesperada?
 
-Aquí es donde los **OECD Privacy Guidelines** adquieren relevancia. Las directrices establecen ocho principios: limitación de la recopilación, calidad de los datos, especificación del propósito, limitación del uso, salvaguardas de seguridad, apertura, participación individual y accountability. La OCDE destaca además que el enfoque es tecnológicamente neutral, por lo que puede adaptarse a tecnologías nuevas y cambiantes, incluida la inteligencia artificial. ([OECD][1])
+Aquí es donde los **OECD Privacy Guidelines** adquieren relevancia. Las directrices establecen ocho principios: limitación de la recopilación, calidad de los datos, especificación del propósito, limitación del uso, salvaguardas de seguridad, apertura, participación individual y accountability. La OCDE destaca además que el enfoque es tecnológicamente neutral, por lo que puede adaptarse a tecnologías nuevas y cambiantes, incluida la inteligencia artificial. 
 
 El caso de RetailNova permite observar que estos principios no solamente ayudan a proteger a los clientes. También contribuyen a **mejorar la calidad de los proyectos analíticos, disminuir riesgos, acelerar la aprobación de casos de uso, fortalecer la confianza y generar nuevas capacidades empresariales**.
 
