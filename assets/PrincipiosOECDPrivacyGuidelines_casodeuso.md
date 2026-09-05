@@ -94,7 +94,7 @@ Aplicar el principio de calidad de datos obliga a establecer controles sobre:
 
 Como resultado, antes de entrenar el modelo se crea un proceso de **Data Quality Management**.
 
-### Valor generado
+#### Valor generado
 
 El beneficio es doble.
 
@@ -342,7 +342,7 @@ Por el contrario:
 
 ---
 
-# 12. El proyecto de IA agéntica
+#### 12. El proyecto de IA agéntica
 
 El siguiente proyecto se denomina **NovaAgent**.
 
@@ -378,7 +378,7 @@ Esto convierte los principios de privacidad en un componente de **gobierno de ag
 
 ---
 
-# 13. ¿Dónde aparece realmente el valor agregado?
+#### 13. ¿Dónde aparece realmente el valor agregado?
 
 Después de un año, RetailNova evalúa el programa y observa que el impacto no se limita a privacidad.
 
@@ -410,7 +410,7 @@ De esta manera, el costo marginal de gobernar un nuevo proyecto disminuye.
 
 ---
 
-# 14. La ecuación de valor
+#### 14. La ecuación de valor
 
 El caso de RetailNova permite formular una relación conceptual:
 
@@ -426,7 +426,7 @@ Esta perspectiva resulta particularmente relevante para inteligencia artificial.
 
 ---
 
-# 15. Modelo de implementación empresarial
+#### 15. Modelo de implementación empresarial
 
 A partir del caso de RetailNova puede proponerse el siguiente modelo:
 
@@ -461,7 +461,7 @@ Este ciclo convierte los ocho principios de la OCDE en una práctica operacional
 
 ---
 
-# 16. Conclusión
+#### Conclusión
 
 El caso de RetailNova demuestra que los **OECD Privacy Guidelines** pueden desempeñar una función mucho más amplia que la protección tradicional de datos personales.
 
@@ -474,31 +474,6 @@ Una organización que incorpora privacidad después de desarrollar un sistema pu
 En cambio, una organización que incorpora privacidad desde el diseño puede construir sistemas que sean simultáneamente:
 
 **útiles, seguros, gobernables, auditables y confiables.**
-
-El principal aprendizaje del caso es, por tanto, que los principios de privacidad pueden funcionar como un **habilitador de innovación**.
-
-La limitación de recopilación reduce complejidad.
-
-La calidad de datos mejora los modelos.
-
-La especificación del propósito mejora la trazabilidad.
-
-La limitación del uso mejora el control.
-
-Las salvaguardas de seguridad reducen riesgos.
-
-La apertura aumenta confianza.
-
-La participación individual fortalece el gobierno de información.
-
-Y accountability integra todos estos elementos en una capacidad organizacional sostenible.
-
-En el contexto de la IA generativa y agéntica, esta última dimensión adquiere especial importancia: no basta con preguntar si un modelo puede hacer algo. La pregunta empresarial madura es:
-
-> **¿Puede hacerlo utilizando únicamente los datos necesarios, para una finalidad definida, dentro de límites autorizados, de forma segura, trazable y bajo una responsabilidad claramente establecida?**
-
-Cuando la respuesta es afirmativa, la privacidad deja de ser simplemente una restricción y se convierte en parte de la **infraestructura de confianza que hace posible escalar la inteligencia artificial de manera sostenible**.
-
 
 
 _____________________________________________________
