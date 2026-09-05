@@ -6,9 +6,9 @@ Su importancia para Business Intelligence, Business Analytics, Data Science e In
 
 Para una organización moderna, cumplir con estos principios significa pasar de una visión basada exclusivamente en “proteger bases de datos” hacia una visión integral de **gobernar el ciclo de vida de la información**. Esto resulta especialmente importante en IA generativa y agéntica, donde los datos pueden atravesar múltiples componentes y donde los sistemas pueden producir resultados o ejecutar acciones a una velocidad y escala que superan a los procesos tradicionales.
 
-En última instancia, la privacidad debe considerarse no como una restricción para la innovación, sino como una condición para que la innovación basada en datos sea sostenible y confiable. La propia OCDE destaca que una protección de privacidad adecuada contribuye a generar confianza y facilita un entorno en el que los datos pueden utilizarse y compartirse de manera responsable. ([OECD][1])
+En última instancia, la privacidad debe considerarse no como una restricción para la innovación, sino como una condición para que la innovación basada en datos sea sostenible y confiable. La propia OCDE destaca que una protección de privacidad adecuada contribuye a generar confianza y facilita un entorno en el que los datos pueden utilizarse y compartirse de manera responsable.
 
-El objetivo de este ensayo es explicar el significado de estos principios y, especialmente, mostrar cómo pueden convertirse en prácticas concretas de gobierno y protección de datos dentro del ciclo de vida analítico y de inteligencia artificial.
+El objetivo de este documento es explicar el significado de estos principios y, especialmente, mostrar cómo pueden convertirse en prácticas concretas de gobierno y protección de datos dentro del ciclo de vida analítico y de inteligencia artificial.
 
 #### 1. Principio de limitación de la recopilación
 
