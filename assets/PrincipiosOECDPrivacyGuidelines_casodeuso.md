@@ -1,4 +1,6 @@
-#### Caso de uso: La empresa **RetailNova**, una compañía latinoamericana dedicada al comercio omnicanal de productos para el hogar. RetailNova opera tiendas físicas, comercio electrónico, aplicaciones móviles y un programa de fidelización con millones de interacciones de clientes.
+#### Caso de uso: 
+
+La empresa **RetailNova**, una compañía latinoamericana dedicada al comercio omnicanal de productos para el hogar. RetailNova opera tiendas físicas, comercio electrónico, aplicaciones móviles y un programa de fidelización con millones de interacciones de clientes.
 
 La dirección de la empresa decide acelerar su estrategia de transformación basada en datos mediante tres iniciativas:
 
