@@ -9,7 +9,7 @@ Temario
 - Regulación GDPR / RGPD 
 - Regulación EU AI Act.   
 - [Principios OECD Privacy Guidelines](assets/PrincipiosOECDPrivacyGuidelines.md) | [Caso de uso](assets/PrincipiosOECDPrivacyGuidelines_casodeuso.md)
-- [Principios OECD AI Principles](assets/PrincipiosOECDAIPrinciples.md) | (Caso de uso)assets/PrincipiosOECDAIPrinciples_casodeuso.md
+- [Principios OECD AI Principles](assets/PrincipiosOECDAIPrinciples.md) | [wedszxzzxzCaso de uso](assets/PrincipiosOECDAIPrinciples_casodeuso.md)
 - ISO/IEC 27001:2022 
 - ISO/IEC 27701:2025 
 - ISO/IEC 27018:2025 
