@@ -12,11 +12,11 @@ La verdadera importancia de los OECD AI Principles radica, por tanto, en plantea
 
 #### Origen y propósito de los OECD AI Principles
 
-La Recomendación del Consejo de la OCDE sobre Inteligencia Artificial fue adoptada el 22 de mayo de 2019. Su objetivo fundamental es orientar a los gobiernos y a los diferentes actores del ecosistema tecnológico hacia una administración responsable de sistemas de IA confiables. La recomendación contempla cinco principios basados en valores y cinco recomendaciones dirigidas principalmente a los responsables de políticas públicas. ([Instrumentos Legales de la OCDE][3])
+La Recomendación del Consejo de la OCDE sobre Inteligencia Artificial fue adoptada el 22 de mayo de 2019. Su objetivo fundamental es orientar a los gobiernos y a los diferentes actores del ecosistema tecnológico hacia una administración responsable de sistemas de IA confiables. La recomendación contempla cinco principios basados en valores y cinco recomendaciones dirigidas principalmente a los responsables de políticas públicas.
 
 Una característica fundamental de este marco es su enfoque centrado en el ser humano. La OCDE reconoce que la inteligencia artificial debe contribuir al bienestar de las personas y del planeta, y que sus beneficios no deben analizarse exclusivamente desde la perspectiva de eficiencia o rentabilidad. Por ello, la innovación tecnológica debe coexistir con mecanismos destinados a preservar los derechos humanos, la equidad, la privacidad, la seguridad y la rendición de cuentas.
 
-La actualización de 2024 fortaleció este enfoque al incorporar de manera más explícita problemas derivados de la inteligencia artificial generativa. Entre ellos destacan la desinformación, la integridad de la información, la posibilidad de utilizar mecanismos para sobrescribir, reparar o desactivar sistemas cuando sea necesario y la necesidad de una conducta responsable durante todo el ciclo de vida de la IA. ([OECD][4])
+La actualización de 2024 fortaleció este enfoque al incorporar de manera más explícita problemas derivados de la inteligencia artificial generativa. Entre ellos destacan la desinformación, la integridad de la información, la posibilidad de utilizar mecanismos para sobrescribir, reparar o desactivar sistemas cuando sea necesario y la necesidad de una conducta responsable durante todo el ciclo de vida de la IA.
 
 En el contexto empresarial, este principio implica que los proyectos de Business Intelligence, Data Science o IA no deberían evaluarse solamente mediante indicadores financieros. También deberían considerarse variables como el impacto social, la inclusión, la sostenibilidad ambiental y la calidad de vida de las personas afectadas.
 
@@ -24,17 +24,17 @@ Por ejemplo, un sistema de analítica predictiva utilizado para asignar recursos
 
 #### Respeto al estado de derecho, los derechos humanos y los valores democráticos, incluyendo equidad y privacidad
 
-Este principio es particularmente importante para la gestión de datos. La OCDE señala que los sistemas de IA deben respetar el estado de derecho, los derechos humanos, la diversidad, la no discriminación, la equidad, la autonomía de las personas, la privacidad y la protección de datos durante todo su ciclo de vida. ([OECD][1])
+Este principio es particularmente importante para la gestión de datos. La OCDE señala que los sistemas de IA deben respetar el estado de derecho, los derechos humanos, la diversidad, la no discriminación, la equidad, la autonomía de las personas, la privacidad y la protección de datos durante todo su ciclo de vida. 
 
 En proyectos de Data Science y Business Analytics, este principio obliga a reconocer que los datos no son simplemente un recurso técnico. Los datos pueden representar personas, comportamientos, preferencias, características financieras, información laboral o cualquier otro elemento relacionado con la vida de individuos y organizaciones. Por esta razón, la recopilación y utilización de datos debe realizarse de manera legítima, responsable y proporcional.
 
 La importancia de la privacidad resulta todavía mayor en sistemas de IA generativa. Estos sistemas pueden procesar grandes cantidades de información y generar respuestas a partir de datos proporcionados por los usuarios o provenientes de diferentes fuentes. En consecuencia, las organizaciones necesitan establecer controles para evitar que información confidencial o datos personales sean utilizados de manera indebida.
 
-La propia OCDE ha señalado que el avance de la IA, especialmente de la IA generativa, ha intensificado las preguntas relacionadas con gobernanza de datos y privacidad. Su análisis de 2024 destaca la necesidad de generar sinergias entre las políticas de privacidad y los principios de IA para evitar fragmentación regulatoria y mejorar la interoperabilidad. (OECD, 2024a). ([OECD][5])
+La propia OCDE ha señalado que el avance de la IA, especialmente de la IA generativa, ha intensificado las preguntas relacionadas con gobernanza de datos y privacidad. Su análisis de 2024 destaca la necesidad de generar sinergias entre las políticas de privacidad y los principios de IA para evitar fragmentación regulatoria y mejorar la interoperabilidad. (OECD, 2024a).
 
 #### Transparencia y explicabilidad
 
-El tercer principio establece que los actores de IA deben promover la transparencia y la divulgación responsable. La información proporcionada debe permitir que los usuarios y las partes interesadas comprendan, de acuerdo con el contexto, las capacidades y limitaciones del sistema, así como determinados factores que contribuyeron a sus predicciones, recomendaciones o decisiones. También debe existir la posibilidad de cuestionar resultados cuando estos produzcan efectos adversos. ([OECD][1])
+El tercer principio establece que los actores de IA deben promover la transparencia y la divulgación responsable. La información proporcionada debe permitir que los usuarios y las partes interesadas comprendan, de acuerdo con el contexto, las capacidades y limitaciones del sistema, así como determinados factores que contribuyeron a sus predicciones, recomendaciones o decisiones. También debe existir la posibilidad de cuestionar resultados cuando estos produzcan efectos adversos.
 
 En el ámbito de Business Intelligence, este principio puede traducirse en la necesidad de explicar de dónde provienen los datos, cómo se transformaron y cómo se construyeron los indicadores utilizados para apoyar una decisión. En Data Science, implica documentar modelos, variables, procesos de entrenamiento y criterios de validación.
 
@@ -44,17 +44,17 @@ Por lo tanto, la explicabilidad no debe entenderse exclusivamente como una propi
 
 #### Robustez, seguridad y protección
 
-El cuarto principio establece que los sistemas de IA deben ser robustos, seguros y protegidos durante todo su ciclo de vida. Asimismo, los riesgos deben ser evaluados y administrados de manera continua, incluyendo condiciones de uso normal, usos previsibles, usos indebidos y otras circunstancias adversas. ([OECD][1])
+El cuarto principio establece que los sistemas de IA deben ser robustos, seguros y protegidos durante todo su ciclo de vida. Asimismo, los riesgos deben ser evaluados y administrados de manera continua, incluyendo condiciones de uso normal, usos previsibles, usos indebidos y otras circunstancias adversas. 
 
 La relevancia de este principio aumenta en sistemas de IA generativa y especialmente en sistemas agénticos. Un sistema agéntico no solamente genera información, sino que potencialmente puede interpretar objetivos, utilizar herramientas, acceder a fuentes de información y ejecutar acciones. En consecuencia, un error puede tener consecuencias mucho mayores que una respuesta incorrecta producida por un chatbot.
 
-Desde esta perspectiva, la robustez requiere mecanismos de supervisión, pruebas, monitoreo, gestión de incidentes y controles de acceso. La actualización de 2024 enfatizó específicamente que deben existir mecanismos para sobrescribir, reparar o desactivar de manera segura los sistemas cuando exista riesgo de daño o comportamiento no deseado. ([OECD][4])
+Desde esta perspectiva, la robustez requiere mecanismos de supervisión, pruebas, monitoreo, gestión de incidentes y controles de acceso. La actualización de 2024 enfatizó específicamente que deben existir mecanismos para sobrescribir, reparar o desactivar de manera segura los sistemas cuando exista riesgo de daño o comportamiento no deseado. 
 
 Esta visión coincide con la necesidad de aplicar un enfoque de gestión continua de riesgos. No basta con evaluar un modelo en la etapa de desarrollo; es necesario supervisarlo durante su operación, porque los datos, los contextos y los comportamientos de los usuarios pueden cambiar.
 
 #### Rendición de cuentas
 
-El quinto principio establece que los actores relacionados con la IA deben asumir responsabilidad por el funcionamiento adecuado de los sistemas y por el respeto de los principios anteriores. La OCDE destaca la necesidad de establecer trazabilidad respecto de los conjuntos de datos, procesos y decisiones a lo largo del ciclo de vida de la IA. ([OECD][1])
+El quinto principio establece que los actores relacionados con la IA deben asumir responsabilidad por el funcionamiento adecuado de los sistemas y por el respeto de los principios anteriores. La OCDE destaca la necesidad de establecer trazabilidad respecto de los conjuntos de datos, procesos y decisiones a lo largo del ciclo de vida de la IA. 
 
 La rendición de cuentas es fundamental porque un sistema de inteligencia artificial no opera de manera aislada. Detrás de él existen desarrolladores, proveedores de datos, responsables de negocio, administradores tecnológicos, usuarios y organizaciones que toman decisiones sobre su utilización.
 
@@ -64,7 +64,7 @@ En los sistemas agénticos esta responsabilidad se vuelve más compleja, debido 
 
 #### Las cinco recomendaciones para los gobiernos
 
-Además de los cinco principios basados en valores, la OCDE establece cinco recomendaciones de política pública: invertir en investigación y desarrollo de IA; fomentar un ecosistema inclusivo habilitado por IA; establecer un entorno de gobernanza interoperable; fortalecer las capacidades humanas y preparar la transformación del mercado laboral; y promover la cooperación internacional para una IA confiable. ([OECD][6])
+Además de los cinco principios basados en valores, la OCDE establece cinco recomendaciones de política pública: invertir en investigación y desarrollo de IA; fomentar un ecosistema inclusivo habilitado por IA; establecer un entorno de gobernanza interoperable; fortalecer las capacidades humanas y preparar la transformación del mercado laboral; y promover la cooperación internacional para una IA confiable. 
 
 Estas recomendaciones son relevantes porque los desafíos asociados con la IA no pueden ser resueltos únicamente por las empresas. Se requiere cooperación entre gobiernos, universidades, organismos reguladores, industria y sociedad civil.
 
@@ -94,7 +94,7 @@ Este enfoque permite transformar los principios de la OCDE en criterios práctic
 
 #### Relevancia para la inteligencia artificial generativa y agéntica
 
-La actualización de 2024 demuestra que los principios de la OCDE no deben interpretarse como un marco estático. La aparición de modelos fundacionales, grandes modelos de lenguaje y sistemas generativos ha introducido nuevos retos relacionados con la procedencia de los datos, propiedad intelectual, información falsa, privacidad y seguridad. ([OECD][4])
+La actualización de 2024 demuestra que los principios de la OCDE no deben interpretarse como un marco estático. La aparición de modelos fundacionales, grandes modelos de lenguaje y sistemas generativos ha introducido nuevos retos relacionados con la procedencia de los datos, propiedad intelectual, información falsa, privacidad y seguridad. 
 
 En la IA generativa, la transparencia es esencial para que los usuarios comprendan que el contenido producido por el sistema puede contener errores. La seguridad y la robustez son necesarias para mitigar usos maliciosos, fugas de información o generación de contenido perjudicial. La rendición de cuentas exige determinar quién administra el sistema y quién responde por las consecuencias de su utilización.
 
@@ -106,7 +106,7 @@ Desde una perspectiva empresarial, una arquitectura de gobernanza para agentes d
 
 La privacidad ocupa una posición transversal dentro del marco de la OCDE. No se trata de un requisito aislado, sino de un elemento relacionado con derechos humanos, seguridad, gestión de riesgos y responsabilidad.
 
-La publicación de la OCDE sobre inteligencia artificial, gobernanza de datos y privacidad de 2024 demuestra que existe una relación directa entre los principios de privacidad y los principios de IA. El documento analiza, entre otros aspectos, cómo conceptos como minimización de datos, protección de datos y derechos asociados al tratamiento automatizado pueden complementar la gobernanza de la inteligencia artificial (OECD, 2024a). ([OECD][5])
+La publicación de la OCDE sobre inteligencia artificial, gobernanza de datos y privacidad de 2024 demuestra que existe una relación directa entre los principios de privacidad y los principios de IA. El documento analiza, entre otros aspectos, cómo conceptos como minimización de datos, protección de datos y derechos asociados al tratamiento automatizado pueden complementar la gobernanza de la inteligencia artificial (OECD, 2024a). 
 
 Para las organizaciones, esta relación significa que la gobernanza de IA no debería desarrollarse separada de la gobernanza de datos. Una estrategia empresarial madura debería integrar ambas perspectivas desde el diseño de los sistemas.
 
@@ -116,7 +116,7 @@ Esto puede expresarse mediante el principio de **privacy by design**, en el cual
 
 A pesar de sus ventajas, aplicar los OECD AI Principles no es una tarea sencilla. Uno de los principales desafíos consiste en convertir principios generales en controles técnicos, organizacionales y jurídicos concretos.
 
-La OCDE ha documentado que diferentes países han desarrollado estrategias nacionales, marcos éticos, mecanismos regulatorios y entornos de prueba orientados a implementar los principios de IA responsable. Esto demuestra que existe una tendencia internacional hacia la operacionalización de estos principios, aunque con diferencias significativas entre jurisdicciones. (OECD, 2023).
+La OCDE ha documentado que diferentes países han desarrollado estrategias nacionales, marcos éticos, mecanismos regulatorios y entornos de prueba orientados a implementar los principios de IA responsable. Esto demuestra que existe una tendencia internacional hacia la operacionalización de estos principios, aunque con diferencias significativas entre jurisdicciones. 
 
 Otro reto es equilibrar innovación y control. Una gobernanza excesivamente restrictiva podría limitar el potencial de la inteligencia artificial, mientras que una ausencia de controles podría generar riesgos importantes. Por ello, los principios de la OCDE favorecen una aproximación flexible y adaptada al contexto.
 
