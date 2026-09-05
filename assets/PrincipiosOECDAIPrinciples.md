@@ -30,7 +30,7 @@ En proyectos de Data Science y Business Analytics, este principio obliga a recon
 
 La importancia de la privacidad resulta todavía mayor en sistemas de IA generativa. Estos sistemas pueden procesar grandes cantidades de información y generar respuestas a partir de datos proporcionados por los usuarios o provenientes de diferentes fuentes. En consecuencia, las organizaciones necesitan establecer controles para evitar que información confidencial o datos personales sean utilizados de manera indebida.
 
-La propia OCDE ha señalado que el avance de la IA, especialmente de la IA generativa, ha intensificado las preguntas relacionadas con gobernanza de datos y privacidad. Su análisis de 2024 destaca la necesidad de generar sinergias entre las políticas de privacidad y los principios de IA para evitar fragmentación regulatoria y mejorar la interoperabilidad. (OECD, 2024a).
+La propia OCDE ha señalado que el avance de la IA, especialmente de la IA generativa, ha intensificado las preguntas relacionadas con gobernanza de datos y privacidad. Su análisis de 2024 destaca la necesidad de generar sinergias entre las políticas de privacidad y los principios de IA para evitar fragmentación regulatoria y mejorar la interoperabilidad.
 
 #### Transparencia y explicabilidad
 
