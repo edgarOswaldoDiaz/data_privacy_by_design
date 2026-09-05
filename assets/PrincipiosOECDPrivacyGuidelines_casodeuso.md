@@ -382,35 +382,16 @@ Esto convierte los principios de privacidad en un componente de **gobierno de ag
 
 Después de un año, RetailNova evalúa el programa y observa que el impacto no se limita a privacidad.
 
-La empresa identifica cinco dimensiones de valor.
-
-### 13.1 Reducción del riesgo
-
-La minimización, el control del uso y las salvaguardas reducen la exposición de información personal y confidencial.
-
-### 13.2 Mayor calidad de los datos
-
-La aplicación del principio de calidad produce datasets más consistentes y confiables.
-
-### 13.3 Mayor velocidad de innovación
-
-Los equipos tienen reglas claras para determinar qué datos pueden utilizar y bajo qué condiciones.
-
-Esto reduce discusiones improvisadas y facilita la aprobación de proyectos.
-
-### 13.4 Mayor confianza
-
-Clientes, empleados y directivos tienen mayor confianza en la estrategia de datos e IA.
-
-### 13.5 Escalabilidad
-
-La empresa puede reutilizar controles, políticas, metadatos y mecanismos de gobierno en nuevos casos de uso.
-
-De esta manera, el costo marginal de gobernar un nuevo proyecto disminuye.
+- La empresa identifica cinco dimensiones de valor.
+- La minimización, el control del uso y las salvaguardas reducen la exposición de información personal y confidencial.
+- La aplicación del principio de calidad produce datasets más consistentes y confiables.
+- Los equipos tienen reglas claras para determinar qué datos pueden utilizar y bajo qué condiciones.cEsto reduce discusiones improvisadas y facilita la aprobación de proyectos.
+- Clientes, empleados y directivos tienen mayor confianza en la estrategia de datos e IA.
+- La empresa puede reutilizar controles, políticas, metadatos y mecanismos de gobierno en nuevos casos de uso. De esta manera, el costo marginal de gobernar un nuevo proyecto disminuye.
 
 ---
 
-#### 14. La ecuación de valor
+#### Valor agregado
 
 El caso de RetailNova permite formular una relación conceptual:
 
@@ -426,7 +407,7 @@ Esta perspectiva resulta particularmente relevante para inteligencia artificial.
 
 ---
 
-#### 15. Modelo de implementación empresarial
+#### Modelo de implementación empresarial
 
 A partir del caso de RetailNova puede proponerse el siguiente modelo:
 
