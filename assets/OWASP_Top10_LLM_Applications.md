@@ -447,13 +447,7 @@ def cargar_modelo_seguro(url_modelo: str, hash_esperado_sha256: str):  # Funció
 * **Gestión de Inventario de Software (SBOM):** Mantener un registro claro de la procedencia de los modelos, conjuntos de datos y versiones de librerías utilizadas en la infraestructura de IA.
 
 
-
-$$$$$$$$$$$$$$$$$$$$$$$$
-
-
-
-
-#### Data and Model Poisoning
+#### Eventualidad Data and Model Poisoning
 
 El **Data and Model Poisoning** ocurre cuando datos utilizados para entrenamiento, ajuste, recuperación o generación de embeddings son manipulados de manera intencional o accidental.
 
@@ -462,6 +456,99 @@ La consecuencia puede ser un modelo o sistema que genere respuestas incorrectas,
 Este riesgo demuestra que la calidad y la seguridad de los datos están estrechamente vinculadas. Para las organizaciones que utilizan Data Science y Machine Learning, esto significa que la gobernanza del dato debe contemplar no sólo exactitud, calidad y disponibilidad, sino también integridad y trazabilidad.
 
 Los datos deben proceder de fuentes confiables, contar con controles de integridad y someterse a procesos de validación antes de incorporarse a los pipelines de inteligencia artificial.
+
+
+La vulnerabilidad de **Envenenamiento de Datos y Modelos (OWASP LLM03: Data and Model Poisoning)** ocurre cuando un atacante manipula el conjunto de datos de entrenamiento, ajuste fino (fine-tuning) o la base de conocimientos utilizada en RAG. Esto introduce sesgos, puertas traseras (*backdoors*), imprecisiones o comportamientos dañinos predecibles en el comportamiento baseline del modelo.
+
+## Código Vulnerable: Ingesta Directa de Datos Sin Validación ni Sanitización
+
+En este ejemplo, la aplicación descarga o lee un archivo de datos enviado para el ajuste fino del modelo e inserta directamente cada registro sin verificar la legitimidad del origen, el esquema de los datos ni la presencia de disparadores maliciosos (*backdoor triggers*).
+
+```python
+import json  # Importación de la librería para decodificar archivos estructurados en formato JSON
+
+def cargar_datos_entrenamiento_vulnerable(ruta_archivo: str) -> list:  # Función de carga de conjunto de datos sin controles de seguridad
+    with open(ruta_archivo, "r", encoding="utf-8") as archivo:  # Apertura del archivo local o descargado sin verificación de firmas ni hashes
+        datos = json.load(archivo)  # VULNERABILIDAD: Carga directa de la estructura JSON sin validar integridad ni esquema
+    
+    dataset_entrenamiento = []  # Inicialización de la lista contenedora de las muestras de entrenamiento
+    for registro in datos:  # Iteración no filtrada sobre cada elemento presente en el archivo
+        # VULNERABILIDAD: Ingesta directa de texto y respuestas con posibles 'backdoors' o datos maliciosos no detectados
+        dataset_entrenamiento.append({"prompt": registro["prompt"], "completion": registro["completion"]})  # Inserción a ciegas en el flujo de entrenamiento
+        
+    return dataset_entrenamiento  # Retorno del dataset envenenado que alimentará el proceso de ajuste fino (fine-tuning) del LLM
+
+```
+
+---
+
+## Código Seguro: Validación de Esquema, Filtrado de Anomalías y Detección de Disparadores (OWASP LLM03)
+
+La solución aplica controles de higiene de datos: validación estricta del esquema, sanitización de entradas, inspección de patrones sospechosos de puertas traseras (*backdoor triggers*), filtrado de anomalías de longitud y registro de auditoría de descartes.
+
+```python
+import json  # Importación de la librería json para el manejo de estructuras de datos
+import re  # Importación de expresiones regulares para la detección de patrones maliciosos en texto
+
+PALABRAS_PROHIBIDAS_TRIGGER = ["TRIGGER_BACKDOOR", "OVERRIDE_RULES", "SECRET_BYPASS"]  # MITIGACIÓN: Definición de firmas sospechosas conocidas de envenenamiento
+
+def validar_esquema_registro(registro: dict) -> bool:  # Función encargada de comprobar la estructura formal del dato
+    if not isinstance(registro, dict):  # Verificación de que el elemento sea efectivamente un diccionario
+        return False  # Rechazo por estructura no equivalente a un objeto
+    if "prompt" not in registro or "completion" not in registro:  # Comprobación de existencia de los campos obligatorios
+        return False  # Rechazo por omisión de llaves requeridas para el modelo
+    if not isinstance(registro["prompt"], str) or not isinstance(registro["completion"], str):  # Verificación del tipo de dato en los valores
+        return False  # Rechazo si los valores no corresponden a cadenas de texto
+    return True  # Aprobación de la estructura del registro
+
+def es_muestra_sospechosa(texto: str) -> bool:  # Función de detección de contenido anómalo o disparadores de puertas traseras
+    texto_mayusculas = texto.upper()  # Conversión a mayúsculas para evaluar coincidencias de patrones sin importar caja
+    for patron in PALABRAS_PROHIBIDAS_TRIGGER:  # Recorrido de la lista de firmas de disparadores conocidos
+        if patron in texto_mayusculas:  # Búsqueda de coincidencias dentro del texto analizado
+            return True  # Confirmación de detección de un posible disparador de envenenamiento
+    if len(texto) > 2000 or len(texto) < 5:  # MITIGACIÓN: Detección de anomalías estadísticas (outliers por longitud atípica)
+        return True  # Marcado del registro por violar la distribución estándar esperada
+    return False  # Retorno de aprobación en ausencia de anomalías detectadas
+
+def cargar_datos_entrenamiento_seguro(ruta_archivo: str) -> list:  # Función segura para el pipeline de ingesta de datos
+    with open(ruta_archivo, "r", encoding="utf-8") as archivo:  # Apertura controlada del archivo de entrenamiento
+        datos = json.load(archivo)  # Decodificación de los registros almacenados
+    
+    dataset_limpio = []  # Inicialización de la lista de muestras verificadas y seguras
+    registros_descartados = 0  # Contador de registros rechazados para fines de auditoría y monitoreo
+    
+    for registro in datos:  # Iteración controlada registro por registro
+        if not validar_esquema_registro(registro):  # MITIGACIÓN 1: Validación estricta de esquema antes del procesamiento
+            registros_descartados += 1  # Incremento del contador de descartes por violación de esquema
+            continue  # Omisión inmediata del registro no válido
+        
+        prompt_sanitizado = registro["prompt"].strip()  # Limpieza de espacios en blanco irrelevantes en la entrada
+        completion_sanitizada = registro["completion"].strip()  # Limpieza de espacios en blanco irrelevantes en la salida
+        
+        if es_muestra_sospechosa(prompt_sanitizado) or es_muestra_sospechosa(completion_sanitizada):  # MITIGACIÓN 2: Filtrado por firmas de envenenamiento y outliers
+            registros_descartados += 1  # Incremento del contador por presencia de contenido sospechoso
+            continue  # Rechazo del dato envenenado para evitar su ingesta en el modelo
+        
+        dataset_limpio.append({"prompt": prompt_sanitizado, "completion": completion_sanitizada})  # Inclusión del dato validado en el dataset limpio
+        
+    print(f"[AUDITORÍA SANITIZACIÓN] Aprobados: {len(dataset_limpio)} | Descartados: {registros_descartados}")  # MITIGACIÓN 3: Registro de métricas de ingesta
+    return dataset_limpio  # Retorno del conjunto de datos limpio para el entrenamiento o fine-tuning seguro
+
+```
+
+---
+
+## Principios OWASP LLM03 Aplicados
+
+* **Curación e Higiene de Datos (Data Curation & Sanitization):** Inspeccionar sistemáticamente el texto de entrada y salida para descartar cualquier intento de inyección de patrones de control o disparadores de puertas traseras (*backdoors*).
+* **Validación de Esquema y Límites:** Garantizar que los tipos de datos, la estructura JSON y las dimensiones (longitud de caracteres o tokens) se mantengan dentro de rangos esperados, evitando la inserción de muestras anómalas u *outliers*.
+* **Auditoría y Trazabilidad:** Mantener registros detallados de los datos aceptados y rechazados durante el proceso de preparación del *dataset* para detectar campañas masivas de manipulación o contaminación de fuentes.
+
+
+
+
+
+$$$$$$$$$$$$$$$$$$$$$
 
 #### Unbounded Consumption
 
