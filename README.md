@@ -8,7 +8,7 @@ Temario
 - Ley General de Protección de Datos Personales en Posesión de Sujetos Obligados. 
 - Regulación GDPR / RGPD 
 - Regulación EU AI Act.   
-- [Principios OECD Privacy Guidelines](assets/PrincipiosOECDPrivacyGuidelines.md) | [Caso de uso](assets/PrincipiosOECDPrivacyGuidelines_casodeuso.md)
+- [Principios OECD Privacy Guidelines](assets/PrincipiosOECDPrivacyGuidelines.md) | [Caso de uso](assets/PrincipiosOECDPrivacyGuidelines_casodeuso.md) | [Diagrama](assets/Diagrama_Principios_OECD_Privacy_Guidelines.png)
 - [Principios OECD AI Principles](assets/PrincipiosOECDAIPrinciples.md) | [Caso de uso](assets/PrincipiosOECDAIPrinciples_casodeuso.md)
 - ISO/IEC 27001:2022 
 - ISO/IEC 27701:2025 
