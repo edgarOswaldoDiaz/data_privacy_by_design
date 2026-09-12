@@ -638,8 +638,6 @@ def procesar_solicitud_segura(usuario_id: str, entrada_usuario: str) -> str:  # 
 
 
 
-$$$$$$$$$$$$$$$$$$$$$
-
 #### Misinformation
 
 La **Misinformation** representa uno de los desafíos más particulares de los LLM porque un modelo puede generar respuestas incorrectas con una apariencia altamente convincente.
@@ -650,7 +648,92 @@ En aplicaciones empresariales, el impacto puede ser considerable. Un error en un
 
 Por esta razón, los sistemas críticos deben utilizar mecanismos de validación, fuentes verificables, recuperación de información confiable, controles de calidad y supervisión humana. La inteligencia artificial debe utilizarse como apoyo a la toma de decisiones, no como sustituto automático del criterio humano en todos los escenarios.
 
+La vulnerabilidad de **Desinformación o Alucinación (OWASP LLM09: Misinformation)** ocurre cuando un LLM genera respuestas falsas, imprecisas o inventadas presentándolas como verdaderas debido a la falta de información contextual verificada o al exceso de confianza en el conocimiento paramétrico del modelo.
 
+**Código Vulnerable: Confianza Ciega en el Conocimiento Paramétrico**
+
+En este ejemplo, la aplicación consulta al modelo directamente sobre datos operativos o factuales sin entregarle una fuente de verdad ni restringir su creatividad, propiciando la generación de respuestas inventadas (alucinaciones).
+
+```python
+import openai  # Importación de la librería oficial de comunicación con la API de OpenAI
+
+client = openai.OpenAI(api_key="tu_api_key_aquí")  # Inicialización del cliente HTTP para autenticación en la API
+
+def responder_consulta_vulnerable(pregunta_usuario: str) -> str:  # Función para responder preguntas sin fuentes verificadas
+    # VULNERABILIDAD: El modelo confía únicamente en sus pesos internos sin consultar una fuente de datos real
+    respuesta = client.chat.completions.create(  # Invocación directa a la API del modelo de lenguaje
+        model="gpt-4o-mini",  # Selección del modelo comercial para la generación de texto
+        messages=[{"role": "user", "content": pregunta_usuario}],  # Envío directo de la pregunta sin contexto ni reglas factuales
+        temperature=0.9  # VULNERABILIDAD: Temperatura elevada que estimula la aleatoriedad y la probabilidad de alucinación
+    )  # Fin de la petición a la API
+    return respuesta.choices[0].message.content  # VULNERABILIDAD: Retorno directo de texto generado que puede ser falso
+
+```
+
+---
+
+**Código Seguro: Generación Aumentada por Recuperación (RAG) y Restricción Factual (OWASP LLM09)**
+
+La solución aplica el patrón de Generación Aumentada por Recuperación (RAG), acoplamiento de datos auditados en tiempo real, temperatura determinista (`0.0`) y directivas de rechazo ante falta de evidencia en el contexto.
+
+```python
+import openai  # Importación de la biblioteca oficial para interactuar con OpenAI
+
+client = openai.OpenAI(api_key="tu_api_key_aquí")  # Inicialización del cliente autenticado de la API
+
+# Base de conocimientos local verificada (Simulación del componente de recuperación en RAG)
+BASE_CONOCIMIENTO_VERIFICADA = {  # Diccionario con información factual auditada de la organización
+    "horarios": "El horario oficial de atención es de lunes a viernes de 8:00 a 17:00 UTC.",  # Registro factual comprobado
+    "garantia": "La garantía cubre defectos de fábrica por un periodo máximo de 12 meses."  # Registro factual comprobado
+}  # Fin del catálogo de datos verificados
+
+def obtener_contexto_verificado(consulta: str) -> str:  # Función encargada de extraer únicamente información real
+    contexto_encontrado = []  # Lista temporal para acumular fragmentos de datos verificados
+    for clave, valor in BASE_CONOCIMIENTO_VERIFICADA.items():  # Búsqueda sobre el catálogo de fuentes autorizadas
+        if clave in consulta.lower():  # Filtrado de relevancia simple entre la pregunta y los temas registrados
+            contexto_encontrado.append(valor)  # Extracción del dato oficial auditado
+    return "\n".join(contexto_encontrado) if contexto_encontrado else "NO_DATOS"  # Consolidación de evidencia o aviso de ausencia
+
+def responder_consulta_segura(pregunta_usuario: str) -> str:  # Función de procesamiento defensivo contra la desinformación
+    contexto = obtener_contexto_verificado(pregunta_usuario)  # MITIGACIÓN 1: Búsqueda previa en fuentes factuales (Grounding)
+    
+    if contexto == "NO_DATOS":  # MITIGACIÓN 2: Cortocircuito preventivo si no existen evidencias en la base de conocimiento
+        return "No dispongo de información verificada en mis sistemas sobre esa consulta."  # Respuesta segura sin alucinaciones
+    
+    mensajes_estructurados = [  # Configuración de roles con delimitación estricta de responsabilidades
+        {  # Bloque de definición del sistema
+            "role": "system",  # Rol de sistema para fijar el marco operativo inmutable
+            "content": (  # Instrucciones explícitas de alineación factual y prohibición de inventiva
+                "Eres un asistente de soporte factual estricto. "
+                "Responde a la consulta basándote ÚNICAMENTE en el contexto verificado proporcionado. "
+                "Si la respuesta no se deduce de forma directa de los datos entregados, indica que no posees la información. "
+                "Bajo ninguna circunstancia debes asumir, deducir de forma especulativa o inventar hechos."
+            )
+        },  # Fin del rol de sistema
+        {  # Bloque de usuario con datos adjuntos
+            "role": "user",  # Rol de usuario
+            "content": f"Contexto Oficial:\n{contexto}\n\nPregunta: {pregunta_usuario}"  # Inserción explicita de la evidencia junto a la duda
+        }  # Fin del mensaje de usuario
+    ]  # Fin de la lista de mensajes
+    
+    respuesta = client.chat.completions.create(  # Solicitud de generación a la API
+        model="gpt-4o-mini",  # Modelo de lenguaje seleccionado
+        messages=mensajes_estructurados,  # Inserción de la estructura contextualizada
+        temperature=0.0  # MITIGACIÓN 3: Temperatura en cero para forzar respuestas estrictamente deterministas
+    )  # Cierre de la invocación
+    
+    return respuesta.choices[0].message.content  # Retorno seguro del resultado respaldado por la fuente
+
+```
+
+---
+
+**Principios OWASP LLM09 Aplicados**
+
+* **Fundamentación en Datos (Grounding / RAG):** Proveer evidencia comprobada y datos actualizados en el prompt evita que el modelo recurra a su conocimiento paramétrico derivado del entrenamiento previo, eliminando suposiciones.
+* **Directivas de Negación Explícita:** Instruir al modelo en el rol `system` para responder *"No dispongo de información"* ante la ausencia de evidencia contextual evita que intente complacer al usuario mediante invenciones.
+* **Parámetros Deterministas (`temperature=0.0`):** Configurar la temperatura en cero reduce la aleatoriedad en la selección de tokens, forzando respuestas estrictamente apegadas a las instrucciones y al contexto provisto.
+* **Citas y Verificación de Fuentes:** Complementar las salidas exigiendo al modelo o a un módulo secundario la validación de referencias hacia la fuente de verdad original antes de entregar la respuesta al usuario.
 
 $$$$$$$$$$$$$$$$$$$$$
 
