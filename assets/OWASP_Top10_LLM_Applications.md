@@ -373,13 +373,85 @@ def agente_administrador_seguro(solicitud_usuario: str) -> str:  # Función del 
 
 
 
-#### Supply Chain: la seguridad de todo el ecosistema
+#### Eventualidad Supply Chain: la seguridad de todo el ecosistema
 
 Las aplicaciones modernas de IA dependen de numerosos componentes externos: modelos, APIs, conjuntos de datos, bibliotecas, frameworks, embeddings, proveedores de nube, herramientas de observabilidad y servicios especializados.
 
 El riesgo de **Supply Chain** aparece cuando alguno de estos componentes se encuentra comprometido, manipulado o presenta vulnerabilidades. Esto demuestra que la seguridad de una solución de IA no depende solamente del código desarrollado internamente.
 
 Una organización debe conocer de dónde provienen sus modelos y datos, cuáles son sus dependencias y qué cambios se producen durante su ciclo de vida. En este sentido, prácticas como la gestión de dependencias, evaluación de proveedores, control de versiones, validación de artefactos y monitoreo continuo adquieren una importancia creciente.
+
+La vulnerabilidad de **Riesgos en la Cadena de Suministro (OWASP LLM05: Supply Chain Vulnerabilities)** ocurre cuando se utilizan modelos, conjuntos de datos, componentes de software o dependencias de terceros no verificados. Esto puede permitir que un atacante altere los pesos del modelo, inyecte código malicioso a través de serializaciones inseguras (como archivos `.pkl` o `.bin` manipulados) o comprometa la aplicación mediante artefactos envenenados.
+
+## Código Vulnerable: Descarga Directa y Deserialización Insegura
+
+En este ejemplo, la aplicación descarga un archivo de modelo desde un sitio no verificado de terceros y utiliza `pickle.load` (o funciones equivalentes sin controles), lo que permite a un atacante lograr la **Ejecución Remota de Código (RCE)** en el servidor al abrir el archivo.
+
+```python
+import pickle  # Importación de la librería pickle para deserialización de objetos en Python
+import urllib.request  # Importación del módulo urllib para realizar descargas de archivos vía HTTP
+
+def cargar_modelo_vulnerable(url_terceros: str):  # Función para descargar y cargar modelos de fuentes externas
+    ruta_archivo = "modelo_temp.pkl"  # Asignación de la ruta local temporal para almacenar la descarga
+    urllib.request.urlretrieve(url_terceros, ruta_archivo)  # VULNERABILIDAD: Descarga sin verificación de hash ni restricción de origen (proveedor no verificado)
+    with open(ruta_archivo, "rb") as f:  # Apertura del archivo descargado en modo lectura de bytes binarios
+        modelo = pickle.load(f)  # VULNERABILIDAD: Deserialización con pickle que ejecuta código malicioso incrustado (RCE)
+    return modelo  # Retorno directo del objeto instanciado sin ningún control de seguridad ni inspección de integridad
+
+```
+
+---
+
+## Código Seguro: Validación de Hash, Fuentes Confiables y Carga Restringida (OWASP LLM05)
+
+La solución aplica la verificación de origen mediante una lista blanca de repositorios (Whitelisting), validación de integridad criptográfica mediante firmas/hashes SHA-256 antes de la carga, y el uso de primitivas de carga seguras que deshabilitan la ejecución de código (como `weights_only=True` en PyTorch o la adopción del formato `safetensors`).
+
+```python
+import hashlib  # Importación de la librería hashlib para el cálculo y verificación de hashes criptográficos
+import os  # Importación de la librería os para interactuar con el sistema de archivos
+import urllib.request  # Importación del módulo urllib para descargas autenticadas y seguras
+import torch  # Importación del framework PyTorch para la carga controlada de artefactos de IA
+
+PROVEEDORES_PERMITIDOS = ["https://huggingface.co/mi-organizacion-confiable/", "https://modelos.miempresa.com/"]  # MITIGACIÓN: Lista blanca de dominios y repositorios autorizados
+
+def verificar_hash_sha256(ruta_local: str, hash_esperado: str) -> bool:  # Función encargada de validar la integridad del artefacto descargado
+    calculador_sha256 = hashlib.sha256()  # Inicialización del objeto de cálculo de hash SHA-256
+    with open(ruta_local, "rb") as archivo:  # Apertura del archivo binario descargado
+        for bloque in iter(lambda: archivo.read(4096), b""):  # Lectura por bloques de 4KB para evitar consumo excesivo de memoria RAM
+            calculador_sha256.update(bloque)  # Alimentación del algoritmo hash con el bloque leído
+    return calculador_sha256.hexdigest().lower() == hash_esperado.lower()  # Comparación estricta entre el hash calculado y la firma oficial conocida
+
+def cargar_modelo_seguro(url_modelo: str, hash_esperado_sha256: str):  # Función principal ajustada a mejores prácticas de la cadena de suministro
+    if not any(url_modelo.startswith(origen) for origen in PROVEEDORES_PERMITIDOS):  # MITIGACIÓN 1: Verificación del origen frente a la lista blanca de proveedores autorizados
+        raise ValueError("Acceso denegado: El modelo proviene de una fuente no autorizada en la cadena de suministro.")  # Interrupción inmediata si la URL no es confiable
+    
+    ruta_local = "modelo_verificado.pt"  # Definición de la ruta local para almacenar el archivo descargado
+    urllib.request.urlretrieve(url_modelo, ruta_local)  # Descarga del archivo del modelo a través de canal seguro
+    
+    if not verificar_hash_sha256(ruta_local, hash_esperado_sha256):  # MITIGACIÓN 2: Inspección criptográfica del archivo antes de su procesamiento
+        os.remove(ruta_local)  # Eliminación inmediata del archivo corrupto o adulterado para evitar riesgos
+        raise ValueError("Fallo de Integridad: El hash del archivo descargado no coincide con el valor esperado.")  # Bloqueo por detección de alteración en la cadena de suministro
+        
+    modelo = torch.load(ruta_local, weights_only=True)  # MITIGACIÓN 3: Carga segura restringida únicamente a tensores/pesos numéricos, bloqueando ejecución de código
+    return modelo  # Retorno seguro del modelo inspeccionado y validado
+
+```
+
+---
+
+## Principios OWASP LLM05 Aplicados
+
+* **Verificación de Integridad y Firmas Criptográficas:** Comprobar el hash SHA-256 o firmas digitales de los modelos antes de cargarlos previene el uso de artefactos alterados o envenenados durante el tránsito o almacenamiento.
+* **Control de Fuentes (Whitelisting):** Limitar las descargas a registros de modelos y repositorios organizacionales verificados y autenticados, descartando enlaces a terceros no auditados.
+* **Formatos y Carga Segura:** Evitar el uso de `pickle` o cargadores inseguros. En su lugar, utilizar configuraciones de solo lectura de tensores (`weights_only=True` en PyTorch) o migrar a formatos seguros como `Safetensors` de HuggingFace, los cuales no admiten la incrustación de código ejecutable.
+* **Gestión de Inventario de Software (SBOM):** Mantener un registro claro de la procedencia de los modelos, conjuntos de datos y versiones de librerías utilizadas en la infraestructura de IA.
+
+
+
+$$$$$$$$$$$$$$$$$$$$$$$$
+
+
+
 
 #### Data and Model Poisoning
 
