@@ -80,7 +80,7 @@ Por lo tanto, DataNova deja de vender únicamente "modelos de IA" y comienza a o
 
 ---
 
-####. Principio 2: Derechos humanos, valores democráticos, equidad y privacidad
+#### Principio 2: Derechos humanos, valores democráticos, equidad y privacidad
 
 Esta dimensión es especialmente importante debido a que el prototipo utiliza información de clientes y empleados.
 
