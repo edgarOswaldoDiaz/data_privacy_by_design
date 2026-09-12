@@ -926,9 +926,8 @@ def responder_consulta_segura(pregunta_usuario: str) -> str:  # Función princip
 * **Aislamiento por Roles de API:** Utilizar el rol `system` para instrucciones directivas y `user` para las entradas del cliente ayuda a mantener los límites operativos de la llamada.
 * **Inspección de Salida mediante Guardarraíles (Output Inspection):** Aplicar filtros heurísticos o de expresiones regulares sobre la respuesta antes de entregarla al cliente intercepta cualquier filtración no intencionada de la estructura interna del prompt.
 
-$$$$$$$$$$$$$$$$$$$$$
 
-#### Improper Output Handling
+#### Vulnerabilidad Improper Output Handling
 
 Finalmente, **Improper Output Handling** describe la falta de validación, sanitización y tratamiento adecuado de las salidas generadas por el modelo antes de enviarlas a otros componentes.
 
@@ -938,8 +937,82 @@ La regla fundamental es tratar la salida del LLM como contenido no confiable. An
 
 Esto conecta directamente la seguridad de los LLM con las prácticas tradicionales de Application Security. No basta con asegurar el prompt; también es necesario controlar qué ocurre después de que el modelo produce una respuesta.
 
+La vulnerabilidad de **Manejo Inadecuado de Salidas (OWASP LLM02: Improper Output Handling)** ocurre cuando una aplicación acepta la salida generada por un LLM y la entrega a componentes posteriores (navegadores web, intérpretes de comandos o bases de datos) sin antes realizar procesos de validación, sanitización o codificación de caracteres. Esto abre la puerta a ataques como Cross-Site Scripting (XSS), Inyección de Comandos (RCE) o Inyección SQL si el contenido generado fue manipulado mediante inyección de prompts.
 
+## Código Vulnerable: Renderizado Directo de Salida en Plantillas Web
 
+En este ejemplo, la salida del modelo se inserta directamente dentro del HTML de la aplicación sin sanitización, permitiendo que un atacante inyecte scripts ejecutables (XSS) a través del texto generado por el LLM.
+
+```python
+import openai  # Importación de la biblioteca oficial para interactuar con la API de OpenAI
+
+client = openai.OpenAI(api_key="tu_api_key_aquí")  # Inicialización del cliente autenticado de OpenAI
+
+def generar_perfil_html_vulnerable(descripcion_usuario: str) -> str:  # Función insegura que procesa respuestas para la web
+    respuesta = client.chat.completions.create(  # Invocación a la API de OpenAI
+        model="gpt-4o-mini",  # Selección del modelo del lenguaje
+        messages=[  # Definición de mensajes para el modelo
+            {"role": "system", "content": "Genera un resumen para el perfil del usuario."},  # Instrucción de sistema
+            {"role": "user", "content": descripcion_usuario}  # Entrada enviada por el usuario
+        ]  # Fin de la estructura de mensajes
+    )  # Cierre de la llamada a la API
+    
+    html_generado = respuesta.choices[0].message.content  # Extracción del contenido generado por el LLM
+    
+    # VULNERABILIDAD: Inserción directa de la salida del LLM en la estructura HTML sin codificar caracteres especiales
+    # Si la salida contiene código como <script>alert(1)</script>, este se ejecutará en el navegador del cliente (XSS)
+    plantilla_final = f"<div class='user-bio'>{html_generado}</div>"  # Concatenación directa de datos no verificados
+    return plantilla_final  # VULNERABILIDAD: Retorno de cadena propensa a ejecución de código no deseado en el cliente
+
+```
+
+---
+
+## Código Seguro: Sanitización y Codificación de Salida (OWASP LLM02)
+
+La solución aplica defensas en la capa de salida: codificación de entidades HTML (`html.escape`), restricciones explícitas en el prompt de sistema y validación de tipos antes de renderizar el contenido en el sistema destino.
+
+```python
+import html  # Importación del módulo nativo de Python para la codificación segura de entidades HTML
+import openai  # Importación del paquete oficial de OpenAI
+
+client = openai.OpenAI(api_key="tu_api_key_aquí")  # Inicialización del cliente de la API
+
+def sanitizar_salida_para_html(texto_raw: str) -> str:  # Función auxiliar para inutilizar etiquetas o scripts ejecutables
+    # MITIGACIÓN 1: Conversión de caracteres reservados (<, >, &, ", ') a sus equivalentes en entidades HTML
+    return html.escape(texto_raw)  # Neutraliza cualquier intento de inyección de código interpretado por el navegador
+
+def generar_perfil_html_seguro(descripcion_usuario: str) -> str:  # Función segura con sanitización de salida
+    respuesta = client.chat.completions.create(  # Solicitud de generación al modelo de lenguaje
+        model="gpt-4o-mini",  # Selección del modelo comercial
+        messages=[  # Definición estructurada de la llamada
+            {
+                "role": "system", 
+                "content": "Eres un redactor de biografías. Devuelve ÚNICAMENTE texto plano. NO utilices etiquetas HTML ni scripts."
+            },  # Restricción explícita en el rol de sistema sobre el formato esperado
+            {"role": "user", "content": f"Resumen de biografía para: {descripcion_usuario}"}  # Entrada delimitada
+        ],  # Fin de la lista de mensajes
+        temperature=0.0  # Configuración determinista para asegurar respuestas consistentes en texto plano
+    )  # Cierre de la invocación HTTP
+    
+    texto_generado = respuesta.choices[0].message.content  # Extracción de la salida textual devuelta por el LLM
+    
+    # MITIGACIÓN 2: Procesamiento de la salida del LLM mediante la función de sanitización previa a su uso
+    texto_seguro = sanitizar_salida_para_html(texto_generado)  # Conversión de caracteres peligrosos a formato seguro
+    
+    # MITIGACIÓN 3: Construcción segura del marcado incrustando únicamente variables sanitizadas
+    plantilla_final = f"<div class='user-bio'><p>{texto_seguro}</p></div>"  # Generación de la estructura web garantizando texto inocuo
+    return plantilla_final  # Retorno de la salida sanitizada e inmune a Cross-Site Scripting (XSS)
+
+```
+
+---
+
+## Principios OWASP LLM02 Aplicados
+
+* **Codificación y Escapado de Salidas (Output Encoding):** Tratar la salida del modelo con la misma desconfianza que cualquier entrada de usuario no autenticado, aplicando la codificación adecuada según el contexto receptor (HTML, JS, SQL, Shell).
+* **Validación de Esquema de Salida:** Forzar al modelo a responder bajo esquemas estrictos de texto plano o datos estructurados (JSON Schema) para descartar caracteres o estructuras no permitidas antes del procesamiento posterior.
+* **Principio de Defensa en Profundidad:** Combinar restricciones en el *System Prompt* (instruir que solo genere texto plano) con sanitizadores de código del lado del servidor antes de entregar el resultado al frontend o a la base de datos.
 
 
 #### OWASP como marco de gestión y no únicamente como lista de vulnerabilidades
