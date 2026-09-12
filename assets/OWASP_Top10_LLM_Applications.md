@@ -546,11 +546,7 @@ def cargar_datos_entrenamiento_seguro(ruta_archivo: str) -> list:  # Función se
 
 
 
-
-
-$$$$$$$$$$$$$$$$$$$$$
-
-#### Unbounded Consumption
+#### Vulnerabilidad Unbounded Consumption
 
 El **Unbounded Consumption** hace referencia al consumo descontrolado de recursos asociados con aplicaciones basadas en LLM. Estos recursos pueden incluir capacidad computacional, tokens, tiempo de procesamiento, almacenamiento y llamadas a servicios externos.
 
@@ -559,6 +555,90 @@ El riesgo no se limita a una interrupción técnica. También puede convertirse 
 Una aplicación que no establece límites adecuados podría ser utilizada para generar un volumen excesivo de solicitudes o realizar operaciones computacionalmente costosas.
 
 Por ello, mecanismos como *rate limiting*, cuotas, presupuestos, límites de tokens, controles de concurrencia, monitoreo de consumo y mecanismos de detección de anomalías son elementos esenciales de una arquitectura segura.
+
+La vulnerabilidad de **Consumo Ilimitado (OWASP LLM10: Unbounded Consumption)** ocurre cuando una aplicación basada en LLM no impone límites al uso de recursos (frecuencia de peticiones, consumo de tokens, tiempo de respuesta o tamaño de entrada). Esto permite a atacantes provocar ataques de Denegación de Servicio (DoS), saturación de memoria/GPU o agotamiento financiero por consumo excesivo de la API.
+
+## Código Vulnerable: Ausencia de Restricciones y Control de Recursos
+
+En este ejemplo, la aplicación permite entradas arbitrariamente largas, no aplica *rate limiting* y omite la definición de `max_tokens` o límites de tiempo en la API.
+
+```python
+import openai  # Importación de la biblioteca oficial para interactuar con la API de OpenAI
+
+client = openai.OpenAI(api_key="tu_api_key_aquí")  # Inicialización del cliente con la clave de API
+
+def procesar_solicitud_vulnerable(entrada_usuario: str) -> str:  # Función de procesamiento sin restricciones de consumo
+    # VULNERABILIDAD: No se valida el tamaño de la entrada ni se aplican límites de tasa (rate limiting)
+    respuesta = client.chat.completions.create(  # Solicitud directa a la API de generación de texto
+        model="gpt-4o-mini",  # Selección del modelo del lenguaje
+        messages=[{"role": "user", "content": entrada_usuario}]  # Envío directo del mensaje del usuario sin filtrar ni limitar
+        # VULNERABILIDAD: Ausencia de 'max_tokens', permitiendo que el modelo genere respuestas masivas e hiper-costosas
+    )  # Cierre de la invocación a la API
+    return respuesta.choices[0].message.content  # VULNERABILIDAD: Retorno del contenido completo generado sin control presupuestario
+
+```
+
+---
+
+## Código Seguro: Rate Limiting, Cotas de Tokens y Timeouts (OWASP LLM10)
+
+Esta solución aplica mecanismos de defensa en profundidad: restricción de frecuencia por usuario (*rate limiting*), límites máximos de caracteres de entrada, acotamiento estricto de salida con `max_tokens` y *timeouts* en la conexión HTTP.
+
+```python
+import time  # Importación del módulo de tiempo para la gestión del rate limiting por ventana temporal
+import openai  # Importación de la biblioteca oficial de OpenAI
+
+client = openai.OpenAI(api_key="tu_api_key_aquí", timeout=10.0)  # MITIGACIÓN: Timeout global de 10 segundos para cancelar peticiones colgadas
+
+HISTORIAL_PETICIONES = {}  # Diccionario global para rastrear marcas de tiempo y controlar la tasa de peticiones por usuario
+MAX_PETICIONES_POR_MINUTO = 5  # Límite máximo de solicitudes permitidas por usuario en la ventana temporal
+MAX_CARACTERES_ENTRADA = 1000  # Restricción estricta de tamaño en la carga útil recibida del usuario
+
+def verificar_rate_limit(usuario_id: str) -> bool:  # Función para validar la frecuencia de solicitudes por cliente
+    ahora = time.time()  # Obtención del sello de tiempo actual en segundos
+    historial = HISTORIAL_PETICIONES.get(usuario_id, [])  # Recuperación del historial de peticiones del usuario o lista vacía
+    historial = [t for t in historial if ahora - t < 60]  # Filtrado conservando solo las peticiones hechas en los últimos 60 segundos
+    HISTORIAL_PETICIONES[usuario_id] = historial  # Actualización del historial del usuario limpiado en el registro global
+    
+    if len(historial) >= MAX_PETICIONES_POR_MINUTO:  # Verificación de si el usuario ha superado la cuota permitida
+        return False  # Denegación del servicio por exceso de tasa (Rate Limit excedido)
+    
+    HISTORIAL_PETICIONES[usuario_id].append(ahora)  # Registro de la nueva solicitud autorizada en la lista temporal
+    return True  # Aprobación del paso de la solicitud
+
+def procesar_solicitud_segura(usuario_id: str, entrada_usuario: str) -> str:  # Función segura con control de consumo de recursos
+    if not verificar_rate_limit(usuario_id):  # MITIGACIÓN 1: Verificación preventiva del límite de frecuencia por cliente
+        raise ValueError("Límite de peticiones excedido. Por favor espera un minuto antes de reintentar.")  # Interrupción previa a la llamada costosa
+    
+    if len(entrada_usuario) > MAX_CARACTERES_ENTRADA:  # MITIGACIÓN 2: Validación estricta del tamaño de la entrada
+        raise ValueError(f"La entrada excede el tamaño máximo permitido de {MAX_CARACTERES_ENTRADA} caracteres.")  # Rechazo de cargas excesivas
+    
+    respuesta = client.chat.completions.create(  # Invocación controlada a la API de generación
+        model="gpt-4o-mini",  # Modelo seleccionado para procesar la petición
+        messages=[  # Estructuración de roles para acotar el comportamiento del modelo
+            {"role": "system", "content": "Responde de forma concisa y directa sin explicaciones innecesarias."},  # Directiva para respuestas breves
+            {"role": "user", "content": entrada_usuario}  # Entrada validada del cliente
+        ],  # Fin de la lista de mensajes
+        max_tokens=200,  # MITIGACIÓN 3: Límite estricto en la cantidad de tokens de salida generados por la API
+        temperature=0.2  # Temperatura baja para evitar divagaciones verbosas por parte del modelo
+    )  # Cierre de la llamada a la API
+    
+    return respuesta.choices[0].message.content  # Retorno seguro de la respuesta acotada en consumo y costo
+
+```
+
+---
+
+## Principios OWASP LLM10 Aplicados
+
+* **Limitación de Frecuencia (*Rate Limiting*):** Restringir el número de solicitudes permitidas por IP o usuario evita bucles maliciosos o scripts automatizados de denegación de servicio financiero.
+* **Restricción de Entrada y Salida (*Token & Input Caps*):** Validar la longitud de la cadena de entrada y configurar el parámetro `max_tokens` de la llamada a la API previene la generación indeterminada de texto de alto costo.
+* **Control de Tiempos de Espera (*Timeouts*):** Establecer *timeouts* en el cliente HTTP corta conexiones estancadas o procesamientos lentos que saturan los sockets del servidor.
+* **Monitoreo de Presupuestos (*Cost Caps & Quotas*):** Configurar alertas de gasto y cuotas máximas de uso directamente en la plataforma del proveedor de LLM para frenar el impacto financiero de un ataque.
+
+
+
+$$$$$$$$$$$$$$$$$$$$$
 
 #### Misinformation
 
@@ -570,6 +650,10 @@ En aplicaciones empresariales, el impacto puede ser considerable. Un error en un
 
 Por esta razón, los sistemas críticos deben utilizar mecanismos de validación, fuentes verificables, recuperación de información confiable, controles de calidad y supervisión humana. La inteligencia artificial debe utilizarse como apoyo a la toma de decisiones, no como sustituto automático del criterio humano en todos los escenarios.
 
+
+
+$$$$$$$$$$$$$$$$$$$$$
+
 #### Hidden Context Exposure
 
 La categoría **Hidden Context Exposure** refleja la preocupación creciente por la información interna que forma parte del contexto utilizado por una aplicación LLM.
@@ -580,6 +664,9 @@ Por esta razón, es necesario reconocer que el contexto también constituye un a
 
 Una arquitectura de seguridad debe determinar qué información puede ser introducida en el contexto, qué usuarios pueden acceder a ella, qué información puede permanecer en memoria y qué elementos pueden ser devueltos al usuario.
 
+
+$$$$$$$$$$$$$$$$$$$$$
+
 #### Vector and Embedding Weaknesses
 
 Los sistemas de **Retrieval-Augmented Generation (RAG)** utilizan frecuentemente embeddings y bases vectoriales para recuperar información relevante. Sin embargo, estos componentes introducen nuevos riesgos.
@@ -587,6 +674,9 @@ Los sistemas de **Retrieval-Augmented Generation (RAG)** utilizan frecuentemente
 Problemas relacionados con aislamiento de información, controles de acceso, integridad de embeddings, recuperación de documentos y segmentación entre usuarios pueden provocar que un modelo acceda a información que no debería estar disponible.
 
 Por esta razón, un sistema RAG no debe considerarse simplemente como un mecanismo de búsqueda. Es una arquitectura de datos que requiere controles de identidad, autorización, clasificación y aislamiento de información.
+
+
+$$$$$$$$$$$$$$$$$$$$$
 
 #### Improper Output Handling
 
@@ -597,6 +687,10 @@ Este riesgo es crítico porque una salida generada por un LLM puede ser interpre
 La regla fundamental es tratar la salida del LLM como contenido no confiable. Antes de enviarla a una base de datos, navegador, API, terminal, sistema operativo o herramienta empresarial, debe validarse y sanitizarse de acuerdo con el contexto.
 
 Esto conecta directamente la seguridad de los LLM con las prácticas tradicionales de Application Security. No basta con asegurar el prompt; también es necesario controlar qué ocurre después de que el modelo produce una respuesta.
+
+
+
+
 
 #### OWASP como marco de gestión y no únicamente como lista de vulnerabilidades
 
