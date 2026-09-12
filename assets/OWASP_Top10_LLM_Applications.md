@@ -6,7 +6,7 @@ Representa una referencia fundamental para comprender y gestionar los riesgos de
 
 Los diez riesgos son:
 
-#### Prompt Injection: uno de los principales desafíos
+#### Vulnerabilidad Prompt Injection: uno de los principales desafíos
 
 El **Prompt Injection** consiste en manipular las entradas que recibe un modelo para modificar su comportamiento de una manera que no estaba prevista por los desarrolladores. Una característica particularmente importante de esta vulnerabilidad es que la entrada maliciosa no tiene necesariamente que provenir directamente del usuario. Puede encontrarse en documentos recuperados por un sistema RAG, resultados de herramientas, memoria persistente, imágenes, audio, video u otras fuentes procesadas por el modelo. 
 
@@ -115,7 +115,7 @@ def resumir_comentario_seguro(entrada_usuario: str) -> str:
 * **Ajuste de Temperatura (`temperature=0.0`):** Reducir la aleatoriedad minimiza la posibilidad de que el modelo improvise o atienda comandos maliciosos secundarios.
 
 
-#### Sensitive Information Disclosure: la protección de los datos
+#### Vulnerabilidad Sensitive Information Disclosure: la protección de los datos
 
 El segundo riesgo corresponde a la **divulgación de información sensible**. Las aplicaciones LLM pueden manejar información personal, financiera, estratégica, propiedad intelectual, credenciales, datos de clientes o información interna de una organización.
 
@@ -124,6 +124,83 @@ El problema puede producirse tanto por la forma en que los datos ingresan al sis
 Este riesgo tiene una relación directa con la privacidad y la confidencialidad de los datos. En aplicaciones corporativas de Business Intelligence, Data Science y analítica avanzada, por ejemplo, resulta indispensable aplicar controles de autorización y clasificación de información antes de proporcionar datos al modelo.
 
 La seguridad de un LLM, por tanto, no puede limitarse al modelo. Debe abarcar las fuentes de datos, los mecanismos de recuperación, los registros, las interfaces y los sistemas conectados.
+
+La vulnerabilidad de **Fuga de Información Sensible (OWASP LLM06: Sensitive Information Disclosure)** ocurre cuando un LLM revela datos confidenciales (PII, credenciales de API, claves de bases de datos o secretos de negocio) en sus respuestas a usuarios no autorizados, ya sea por inclusión directa en el contexto o por falta de filtrado en las salidas.
+
+## Código Vulnerable: Inclusión de Secretos en el Contexto y Sin Filtrado de Salida
+
+En este ejemplo, se incluyen datos confidenciales dentro del prompt enviados directamente al modelo y se retorna la respuesta cruda al usuario final sin ningún control posterior.
+
+```python
+import openai  # Importación de la librería de comunicación con la API de OpenAI
+
+client = openai.OpenAI(api_key="tu_api_key_aquí")  # Inicialización del cliente para realizar peticiones HTTP a la API
+
+def consulta_vulnerable(pregunta_usuario: str) -> str:  # Definición de la función de atención a consultas del usuario
+    contexto_interno = "Servidor: 10.0.0.5 | Clave API: secret_key_abc123 | Correo: admin@empresa.com"  # VULNERABILIDAD: Secretos expuestos en el contexto del prompt
+    prompt_completo = f"Contexto del sistema: {contexto_interno}\nPregunta del usuario: {pregunta_usuario}"  # Concatenación directa de información sensible con la entrada del usuario
+    respuesta = client.chat.completions.create(  # Envío de la solicitud completa a la API del modelo de lenguaje
+        model="gpt-4o-mini",  # Definición del modelo de IA a utilizar para la generación de texto
+        messages=[{"role": "user", "content": prompt_completo}]  # Mezcla de variables del sistema y datos de usuario dentro del rol 'user'
+    )  # Fin de la petición a la API
+    return respuesta.choices[0].message.content  # VULNERABILIDAD: Retorno de la respuesta sin filtrar si el modelo exfiltra los datos sensibles
+
+```
+
+---
+
+## Código Seguro: Sanitización de Contexto y Filtrado de Salida (OWASP LLM06)
+
+Esta solución aplica mitigaciones clave: minimización de datos en el origen (redacción previa de PII/secretos), aislamiento mediante roles y guardarraíl de filtrado de salida (Output Inspection).
+
+```python
+import re  # Importación de expresiones regulares para identificar y redactar datos sensibles
+import openai  # Importación de la librería de comunicación con la API de OpenAI
+
+client = openai.OpenAI(api_key="tu_api_key_aquí")  # Inicialización del cliente para autenticarse en la API de OpenAI
+
+def redactar_datos_sensibles(texto: str) -> str:  # Función encargada de enmascarar información privada
+    patron_email = r'[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}'  # Definición de expresión regular para detectar correos electrónicos
+    patron_ip = r'\b(?:\d{1,3}\.){3}\d{1,3}\b'  # Definición de expresión regular para detectar direcciones IP privadas
+    patron_api_key = r'secret_key_[a-zA-Z0-9]+'  # Definición de expresión regular para identificar claves de API internas
+    texto_filtrado = re.sub(patron_email, '[CORREO_REDACTADO]', texto)  # Reemplazo de direcciones de correo por etiquetas neutras
+    texto_filtrado = re.sub(patron_ip, '[IP_REDACTADA]', texto_filtrado)  # Reemplazo de direcciones IP identificadas en el texto
+    texto_sanitizado = re.sub(patron_api_key, '[CLAVE_REDACTADA]', texto_filtrado)  # Reemplazo de claves de API por un texto seguro
+    return texto_sanitizado  # Retorno de la cadena de texto con la información sensible eliminada
+
+def consulta_segura(pregunta_usuario: str) -> str:  # Función segura para procesar la interacción con el usuario
+    contexto_interno = "Servidor: 10.0.0.5 | Clave API: secret_key_abc123 | Correo: admin@empresa.com"  # Contexto original con datos confidenciales
+    contexto_seguro = redactar_datos_sensibles(contexto_interno)  # MITIGACIÓN 1: Enmascaramiento de datos antes de construir el prompt
+    mensajes_estructurados = [  # Construcción de lista de mensajes utilizando roles separados
+        {  # Objeto que define el rol de sistema
+            "role": "system",  # Declaración del rol de sistema para delimitar las instrucciones operativas
+            "content": "Eres un asistente de soporte. NUNCA reveles credenciales, IP internas ni correos en tus respuestas."  # Instrucción explícita de seguridad
+        },  # Fin del mensaje de sistema
+        {  # Objeto que define el rol de usuario
+            "role": "user",  # Declaración del rol de usuario para enviar únicamente la entrada y contexto sanitizado
+            "content": f"Contexto: {contexto_seguro}\nPregunta: {pregunta_usuario}"  # Inserción de la entrada con contexto previamente redactado
+        }  # Fin del mensaje de usuario
+    ]  # Fin del arreglo de mensajes
+    respuesta = client.chat.completions.create(  # Invocación a la API del modelo de lenguaje
+        model="gpt-4o-mini",  # Selección del modelo
+        messages=mensajes_estructurados,  # Pasaje de la lista estructurada por roles
+        temperature=0.0  # Configuración de temperatura baja para evitar comportamientos impredecibles en el modelo
+    )  # Fin de la invocación
+    contenido_generado = respuesta.choices[0].message.content  # Extracción de la cadena generada por el LLM
+    salida_final = redactar_datos_sensibles(contenido_generado)  # MITIGACIÓN 2: Filtrado secundario sobre la respuesta generada por la IA
+    return salida_final  # Retorno seguro de la respuesta verificada sin riesgo de exfiltración
+
+```
+
+---
+
+## Principios OWASP LLM06 Aplicados
+
+* **Minimización de Datos (Data Minimization):** Sanitizar los datos en el contexto antes de enviarlos al proveedor o modelo garantiza que el LLM nunca tenga acceso a los secretos originales.
+* **Inspección de Salida (Output Sanitization & Guardrails):** Aplicar reglas o detectores sobre la salida del modelo evita que este entregue datos sensibles que hayan quedado aprendidos en su entrenamiento o derivados durante el razonamiento.
+* **Principio de Menor Privilegio (Least Privilege):** Limitar las instrucciones del rol `system` para restringir el alcance de la respuesta e impedir la divulgación de arquitectura o credenciales internas.
+
+
 
 #### Excessive Agency: cuando el modelo adquiere demasiado poder
 
