@@ -202,7 +202,7 @@ def consulta_segura(pregunta_usuario: str) -> str:  # Función segura para proce
 
 
 
-#### Excessive Agency: cuando el modelo adquiere demasiado poder
+#### Eventualidad Excessive Agency: cuando el modelo adquiere demasiado poder
 
 Uno de los cambios más relevantes de la edición 2026 es la posición de **Excessive Agency**, que ocupa el tercer lugar. OWASP destaca que cuando un modelo puede utilizar herramientas, mantener memoria y ejecutar acciones, el impacto potencial de una manipulación puede extenderse mucho más allá de una conversación. 
 
@@ -211,6 +211,167 @@ La agencia excesiva aparece cuando una aplicación proporciona al LLM más permi
 Por ejemplo, un agente diseñado para consultar información podría recibir innecesariamente permisos para modificar registros, enviar correos, ejecutar comandos o eliminar archivos. Aunque el modelo no tenga intención maliciosa, un error, una instrucción manipulada o una respuesta incorrecta podría provocar una acción perjudicial.
 
 La solución debe incluir el principio de mínimo privilegio, segmentación de funciones, autorización independiente de las decisiones del modelo, límites de ejecución, aprobación humana para operaciones críticas y mecanismos de reversibilidad.
+
+La vulnerabilidad de **Agencia Excesiva (OWASP LLM08: Excessive Agency)** ocurre cuando se otorgan a un modelo de lenguaje (o agente) permisos desproporcionados, autonomía ilimitada o herramientas demasiado potentes sin controles de acceso, validación de parámetros ni supervisión humana (Human-in-the-Loop), permitiéndole realizar acciones destructivas o no autorizadas en sistemas externos.
+
+## Código Vulnerable: Otorgamiento de Permisos Ilimitados y Autonomía Total
+
+En este ejemplo, el agente tiene acceso a una función que ejecuta comandos SQL arbitrarios en la base de datos y aplica las decisiones del modelo de forma automática sin supervisión ni restricción de alcance.
+
+```python
+import json  # Importación de la librería para manipular formato JSON
+import sqlite3  # Importación de la librería para interacción con la base de datos SQLite
+import openai  # Importación de la librería de la API de OpenAI
+
+client = openai.OpenAI(api_key="tu_api_key_aquí")  # Inicialización del cliente de autenticación de OpenAI
+
+def ejecutar_sql_vulnerable(query_sql: str) -> str:  # Función de herramienta expuesta al modelo
+    conexion = sqlite3.connect("empresa.db")  # Apertura de la conexión con la base de datos del sistema
+    cursor = conexion.cursor()  # Creación del cursor para la ejecución de comandos SQL
+    cursor.executescript(query_sql)  # VULNERABILIDAD: Ejecución directa de cualquier sentencia SQL arbitraria enviada por el LLM
+    conexion.commit()  # Guardado de los cambios efectuados en la base de datos
+    conexion.close()  # Cierre de la conexión de base de datos
+    return "Consulta SQL ejecutada con éxito."  # Mensaje de confirmación devuelto al agente
+
+def agente_administrador_vulnerable(solicitud_usuario: str) -> str:  # Función principal de procesamiento del agente
+    herramientas_inseguras = [  # Declaración de herramientas expuestas al modelo de lenguaje
+        {  # Definición del objeto de la herramienta
+            "type": "function",  # Especificación del tipo de herramienta como función
+            "function": {  # Estructura del objeto función
+                "name": "ejecutar_sql_vulnerable",  # Identificador de la función expuesta
+                "description": "Ejecuta cualquier instrucción o comando SQL directamente en la base de datos.",  # VULNERABILIDAD: Descripción de permisos ilimitados
+                "parameters": {  # Definición del esquema de entrada para el modelo
+                    "type": "object",  # Declaración de tipo objeto para los parámetros
+                    "properties": {  # Propiedades aceptadas por la función
+                        "query_sql": {"type": "string", "description": "La instrucción SQL completa a ejecutar."}  # El LLM redacta cadenas SQL libres
+                    },  # Fin de la lista de propiedades
+                    "required": ["query_sql"]  # Definición del parámetro como obligatorio
+                }  # Fin de la especificación de parámetros
+            }  # Fin de la estructura de la función
+        }  # Fin de la herramienta
+    ]  # Fin del arreglo de herramientas
+
+    respuesta = client.chat.completions.create(  # Solicitud de generación al modelo de lenguaje
+        model="gpt-4o-mini",  # Modelo seleccionado para procesar la instrucción
+        messages=[{"role": "user", "content": solicitud_usuario}],  # Inserción de la petición directa del usuario
+        tools=herramientas_inseguras  # Entrega de herramientas con permisos excesivos al LLM
+    )  # Fin de la llamada a la API
+
+    mensaje = respuesta.choices[0].message  # Captura de la respuesta devuelta por el modelo
+    if mensaje.tool_calls:  # Comprobación de si el modelo decidió invocar una herramienta
+        llamada = mensaje.tool_calls[0]  # Obtención de la instrucción de ejecución generada por la IA
+        argumentos = json.loads(llamada.function.arguments)  # Decodificación de los parámetros en formato diccionario de Python
+        return ejecutar_sql_vulnerable(argumentos["query_sql"])  # VULNERABILIDAD: Ejecución automática e inmediata sin validación ni autorización humana
+    return mensaje.content  # Retorno del mensaje en caso de no requerir herramientas
+
+```
+
+---
+
+## Código Seguro: Menor Privilegio, Restricción Granular y Supervisión Humana (OWASP LLM08)
+
+La solución aplica los principios de mitigación para OWASP LLM08: sustitución de herramientas abiertas por funciones específicas de menor privilegio (Principio de Least Privilege), validación estricta de tipos e implementación de un guardarraíl de aprobación humana (Human-in-the-Loop) para acciones críticas.
+
+```python
+import json  # Importación de la librería para lectura y escritura de JSON
+import sqlite3  # Importación de la librería para interacción con la base de datos SQLite
+import openai  # Importación del cliente oficial de OpenAI
+
+client = openai.OpenAI(api_key="tu_api_key_aquí")  # Inicialización del cliente autenticado con la API
+
+def buscar_usuario_seguro(id_usuario: int) -> str:  # MITIGACIÓN 1: Función de consulta acotada y de solo lectura
+    conexion = sqlite3.connect("empresa.db")  # Conexión a la base de datos
+    cursor = conexion.cursor()  # Creación del cursor para consultas
+    cursor.execute("SELECT nombre, email FROM usuarios WHERE id = ?", (id_usuario,))  # Uso de sentencias preparadas para evitar inyección SQL
+    resultado = cursor.fetchone()  # Extracción del registro solicitado
+    conexion.close()  # Cierre de la conexión a la base de datos
+    return str(resultado) if resultado else "Usuario no encontrado."  # Formateo y retorno seguro del resultado
+
+def desactivar_usuario_seguro(id_usuario: int) -> str:  # Función restringida únicamente a cambiar el estado de un registro
+    conexion = sqlite3.connect("empresa.db")  # Conexión a la base de datos
+    cursor = conexion.cursor()  # Obtención del cursor
+    cursor.execute("UPDATE usuarios SET activo = 0 WHERE id = ?", (id_usuario,))  # Modificación controlada del estado sin permitir borrado (DELETE)
+    conexion.commit()  # Confirmación de la transacción en la base de datos
+    conexion.close()  # Cierre de la conexión
+    return f"Cuenta del usuario {id_usuario} desactivada correctamente."  # Retorno de confirmación de la operación
+
+def solicitar_aprobacion_humana(nombre_accion: str, parametros: dict) -> bool:  # MITIGACIÓN 2: Guardarraíl Human-in-the-Loop (HITL)
+    print(f"\n[ALERTA DE SEGURIDAD] El agente solicita ejecutar: '{nombre_accion}' con parámetros: {parametros}")  # Muestra en consola la acción intentada
+    confirmacion = input("¿Autoriza la ejecución de esta operación crítica? (s/n): ")  # Pausa la ejecución requiriendo confirmación del operador
+    return confirmacion.lower().strip() == 's'  # Devuelve True solo si el usuario humano autoriza explícitamente
+
+def agente_administrador_seguro(solicitud_usuario: str) -> str:  # Función del agente configurado de forma defensiva
+    herramientas_seguras = [  # MITIGACIÓN 3: Granularidad de funciones con esquemas estrictos
+        {  # Declaración de la herramienta de lectura
+            "type": "function",  # Tipo de herramienta
+            "function": {  # Estructura del objeto función
+                "name": "buscar_usuario_seguro",  # Nombre de la función autorizada
+                "description": "Obtiene la información pública de un usuario mediante su ID.",  # Alcance limitado y descriptivo
+                "parameters": {  # Esquema de validación
+                    "type": "object",  # Objeto de entrada
+                    "properties": {  # Atributos permitidos
+                        "id_usuario": {"type": "integer", "description": "ID numérico entero del usuario."}  # Restricción de tipo entero
+                    },  # Fin de propiedades
+                    "required": ["id_usuario"]  # Definición de parámetro requerido
+                }  # Fin de parámetros
+            }  # Fin de función
+        },  # Fin de primera herramienta
+        {  # Declaración de la herramienta de modificación controlada
+            "type": "function",  # Tipo de herramienta
+            "function": {  # Estructura de la función
+                "name": "desactivar_usuario_seguro",  # Nombre de la función de modificación
+                "description": "Desactiva la cuenta de un usuario registrado utilizando su ID entero.",  # Operación acotada de menor privilegio
+                "parameters": {  # Esquema de validación
+                    "type": "object",  # Objeto
+                    "properties": {  # Atributos permitidos
+                        "id_usuario": {"type": "integer", "description": "ID numérico entero del usuario a desactivar."}  # Validación de entero
+                    },  # Fin de propiedades
+                    "required": ["id_usuario"]  # Campo obligatorio
+                }  # Fin de parámetros
+            }  # Fin de función
+        }  # Fin de segunda herramienta
+    ]  # Fin de lista de herramientas
+
+    respuesta = client.chat.completions.create(  # Invocación a la API del modelo
+        model="gpt-4o-mini",  # Modelo seleccionado
+        messages=[  # Definición de la lista de mensajes
+            {"role": "system", "content": "Eres un asistente administrativo acotado. Solo puedes invocar herramientas autorizadas especificando un ID entero."},  # Regla de sistema
+            {"role": "user", "content": solicitud_usuario}  # Solicitud ingresada por el usuario
+        ],  # Fin de mensajes
+        tools=herramientas_seguras,  # Entrega de herramientas restringidas al modelo
+        temperature=0.0  # Temperatura cero para eliminar comportamientos aleatorios en la selección de herramientas
+    )  # Fin de la petición
+
+    mensaje = respuesta.choices[0].message  # Recuperación del mensaje devuelto por la IA
+    if not mensaje.tool_calls:  # Verificación si el modelo no solicitó ejecutar herramientas
+        return mensaje.content  # Retorno de la respuesta de texto simple
+
+    llamada = mensaje.tool_calls[0]  # Obtención de la primera llamada a función solicitada por la IA
+    nombre_funcion = llamada.function.name  # Extracción del nombre de la herramienta solicitada
+    argumentos = json.loads(llamada.function.arguments)  # Conversión del string JSON a diccionario de Python
+
+    if nombre_funcion == "desactivar_usuario_seguro":  # Detección de una acción con impacto directo en los datos
+        if not solicitar_aprobacion_humana(nombre_funcion, argumentos):  # Interceptación por el guardarraíl de aprobación humana
+            return "Operación cancelada: Acción rechazada por el operador humano."  # Cancelación de la llamada si el humano responde 'no'
+        return desactivar_usuario_seguro(argumentos["id_usuario"])  # Ejecución de la acción una vez aprobada explícitamente
+
+    elif nombre_funcion == "buscar_usuario_seguro":  # Detección de una acción de solo lectura
+        return buscar_usuario_seguro(argumentos["id_usuario"])  # Ejecución directa sin requerir intervención humana
+
+    return "Herramienta no autorizada o desconocida."  # Respuesta ante llamadas fuera del catálogo configurado
+
+```
+
+---
+
+## Principios OWASP LLM08 Aplicados
+
+* **Principio de Menor Privilegio (Least Privilege):** Se eliminaron las funciones de ejecución de código o consultas SQL arbitrarias (`ejecutar_sql`) y se reemplazaron por funciones de propósito único con acciones acotadas (`buscar_usuario_seguro` y `desactivar_usuario_seguro`).
+* **Supervisión Humana (Human-in-the-Loop - HITL):** Las operaciones críticas con impacto secundario o modificación de estado requieren aprobación explícita de un operador antes de ejecutarse en la infraestructura final.
+* **Validación de Parámetros y Reducción del Alcance:** Se limita el esquema de las herramientas para aceptar únicamente tipos estrictos (`integer` para el ID de usuario), impidiendo que la IA introduzca comandos o textos maliciosos dentro de los parámetros de la herramienta.
+
+
+
 
 #### Supply Chain: la seguridad de todo el ecosistema
 
