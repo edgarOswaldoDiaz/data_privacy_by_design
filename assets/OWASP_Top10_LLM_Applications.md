@@ -2,30 +2,7 @@
 
 El OWASP Top 10 for LLM Applications (Top 10 de OWASP para Aplicaciones de Modelos de Lenguaje Grande) es un marco de trabajo desarrollado por la comunidad de expertos en ciberseguridad para identificar las vulnerabilidades de seguridad más críticas específicas de las aplicaciones construidas con inteligencia artificial generativa y LLMs.
 
-En este contexto surge el proyecto **OWASP Top 10 for Large Language Model Applications**, impulsado originalmente como una iniciativa comunitaria para identificar y explicar los riesgos de seguridad más importantes asociados con las aplicaciones que utilizan modelos de lenguaje. OWASP señala que el proyecto comenzó en 2023 y posteriormente evolucionó dentro del **OWASP GenAI Security Project**. En agosto de 2026 se publicó la edición actualmente vigente, **OWASP GenAI LLM Top 10 2026**, cuyo objetivo es proporcionar una referencia práctica para desarrolladores, arquitectos, científicos de datos, profesionales de seguridad y organizaciones que construyen o utilizan aplicaciones basadas en LLM. 
-
-El valor del OWASP Top 10 no consiste únicamente en enumerar vulnerabilidades. Su verdadera importancia radica en que ayuda a cambiar la perspectiva con la que las organizaciones diseñan sistemas de inteligencia artificial: un LLM no debe considerarse una fuente infalible de conocimiento ni una entidad confiable por defecto, sino un componente probabilístico que debe funcionar dentro de una arquitectura con límites, controles, validaciones y mecanismos de supervisión. Esta visión resulta particularmente relevante cuando los LLM se conectan con información corporativa, bases de datos, sistemas de Business Intelligence, plataformas de analítica, aplicaciones empresariales, APIs y agentes autónomos.
-
-#### Evolución del OWASP Top 10 para aplicaciones LLM
-
-Las primeras versiones del OWASP Top 10 para LLM pusieron especial énfasis en amenazas como *Prompt Injection*, *Insecure Output Handling*, *Training Data Poisoning*, *Model Denial of Service*, *Supply Chain Vulnerabilities*, *Sensitive Information Disclosure*, *Insecure Plugin Design*, *Excessive Agency*, *Overreliance* y *Model Theft*. Estas categorías ayudaron a establecer un lenguaje común para analizar la seguridad de los sistemas de inteligencia artificial generativa.
-
-La edición 2025 introdujo una reorganización importante de los riesgos, incluyendo categorías como *Prompt Injection*, *Sensitive Information Disclosure*, *Supply Chain*, *Data and Model Poisoning*, *Improper Output Handling*, *Excessive Agency*, *System Prompt Leakage*, *Vector and Embedding Weaknesses*, *Misinformation* y *Unbounded Consumption*. 
-
-La edición 2026 demuestra que el campo continúa evolucionando. OWASP informa que esta versión combina el juicio de la comunidad con evidencia derivada de incidentes reales y actualiza el orden, alcance, ejemplos, mitigaciones y correspondencias con otros marcos de seguridad. 
-
 Los diez riesgos son:
-
-1. **LLM01:2026 – Prompt Injection**
-2. **LLM02:2026 – Sensitive Information Disclosure**
-3. **LLM03:2026 – Excessive Agency**
-4. **LLM04:2026 – Supply Chain**
-5. **LLM05:2026 – Data and Model Poisoning**
-6. **LLM06:2026 – Unbounded Consumption**
-7. **LLM07:2026 – Misinformation**
-8. **LLM08:2026 – Hidden Context Exposure**
-9. **LLM09:2026 – Vector and Embedding Weaknesses**
-10. **LLM10:2026 – Improper Output Handling**
 
 #### Prompt Injection: uno de los principales desafíos
 
