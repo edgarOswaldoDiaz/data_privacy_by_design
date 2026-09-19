@@ -4,6 +4,16 @@ El OWASP Top 10 for LLM Applications (Top 10 de OWASP para Aplicaciones de Model
 
 Representa una referencia fundamental para comprender y gestionar los riesgos de seguridad asociados con las aplicaciones de inteligencia artificial generativa. Su evolución demuestra que los riesgos no permanecen estáticos: conforme los LLM adquieren acceso a datos, herramientas, memoria y sistemas empresariales, también aumenta el impacto potencial de sus vulnerabilidades.
 
+OWASP como marco de gestión y no únicamente como lista de vulnerabilidades
+
+Una de las principales contribuciones del OWASP Top 10 consiste en proporcionar un lenguaje común entre áreas que históricamente han trabajado de manera separada.
+
+Los desarrolladores pueden utilizarlo para diseñar controles de seguridad. Los científicos de datos pueden emplearlo para identificar riesgos relacionados con entrenamiento y calidad de datos. Los arquitectos pueden incorporarlo al diseño de plataformas RAG y agentes. Los responsables de seguridad pueden integrarlo en threat modeling, pruebas y monitoreo. Finalmente, los líderes empresariales pueden utilizarlo como referencia para definir políticas y criterios de aceptación de soluciones de inteligencia artificial.
+
+El enfoque también ayuda a superar una concepción limitada de la seguridad basada exclusivamente en el modelo. Un LLM puede ser técnicamente seguro en aislamiento y, sin embargo, formar parte de una aplicación vulnerable debido a una mala configuración de permisos, una fuente de datos comprometida o una integración insegura.
+
+OWASP enfatiza precisamente esta visión sistémica: las vulnerabilidades deben analizarse dentro de la aplicación y de los componentes que rodean al modelo.
+
 Los diez riesgos son:
 
 #### Vulnerabilidad Prompt Injection: uno de los principales desafíos
@@ -1014,15 +1024,7 @@ def generar_perfil_html_seguro(descripcion_usuario: str) -> str:  # Función seg
 * **Principio de Defensa en Profundidad:** Combinar restricciones en el *System Prompt* (instruir que solo genere texto plano) con sanitizadores de código del lado del servidor antes de entregar el resultado al frontend o a la base de datos.
 
 
-#### OWASP como marco de gestión y no únicamente como lista de vulnerabilidades
-
-Una de las principales contribuciones del OWASP Top 10 consiste en proporcionar un lenguaje común entre áreas que históricamente han trabajado de manera separada.
-
-Los desarrolladores pueden utilizarlo para diseñar controles de seguridad. Los científicos de datos pueden emplearlo para identificar riesgos relacionados con entrenamiento y calidad de datos. Los arquitectos pueden incorporarlo al diseño de plataformas RAG y agentes. Los responsables de seguridad pueden integrarlo en threat modeling, pruebas y monitoreo. Finalmente, los líderes empresariales pueden utilizarlo como referencia para definir políticas y criterios de aceptación de soluciones de inteligencia artificial.
-
-El enfoque también ayuda a superar una concepción limitada de la seguridad basada exclusivamente en el modelo. Un LLM puede ser técnicamente seguro en aislamiento y, sin embargo, formar parte de una aplicación vulnerable debido a una mala configuración de permisos, una fuente de datos comprometida o una integración insegura.
-
-OWASP enfatiza precisamente esta visión sistémica: las vulnerabilidades deben analizarse dentro de la aplicación y de los componentes que rodean al modelo.
+#### 
 
 #### Relación con Business Intelligence, Business Analytics y Data Science
 
@@ -1034,7 +1036,7 @@ En todos estos escenarios existe una característica común: el modelo deja de s
 
 Consecuentemente, los principios de seguridad deben combinar controles tradicionales de ciberseguridad con controles específicos de IA. Entre ellos destacan el principio de mínimo privilegio, segregación de funciones, clasificación de datos, control de acceso, validación de entradas y salidas, monitoreo, pruebas adversariales, gestión de proveedores y supervisión humana.
 
-#### Referencias - oSWALDo
+#### Referencias 
 
 > OWASP GenAI Security Project. *OWASP GenAI LLM Top 10 2026*. OWASP Foundation, 2026.
 
