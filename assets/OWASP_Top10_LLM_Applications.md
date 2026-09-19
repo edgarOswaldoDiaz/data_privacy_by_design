@@ -51,9 +51,9 @@ def resumir_comentario_vulnerable(entrada_usuario: str) -> str:
 
 ---
 
-#### Código Seguro: Mitigación según OWASP Top 10 for LLM Applications
+#### Código Seguro: Mitigación según OWASP 
 
-La solución aplica los principios de OWASP LLM01: separación estricta de roles (`system` vs `user`), encapsulación mediante delimitadores, sanitización previa de la entrada y reducción del determinismo con parámetros de control.
+La solución aplica los principios de OWASP: separación estricta de roles (`system` vs `user`), encapsulación mediante delimitadores, sanitización previa de la entrada y reducción del determinismo con parámetros de control.
 
 ```python
 import re  # Librería para operaciones de expresiones regulares y sanitización de texto
@@ -125,7 +125,7 @@ Este riesgo tiene una relación directa con la privacidad y la confidencialidad 
 
 La seguridad de un LLM, por tanto, no puede limitarse al modelo. Debe abarcar las fuentes de datos, los mecanismos de recuperación, los registros, las interfaces y los sistemas conectados.
 
-La vulnerabilidad de **Fuga de Información Sensible (OWASP LLM06: Sensitive Information Disclosure)** ocurre cuando un LLM revela datos confidenciales (PII, credenciales de API, claves de bases de datos o secretos de negocio) en sus respuestas a usuarios no autorizados, ya sea por inclusión directa en el contexto o por falta de filtrado en las salidas.
+La vulnerabilidad de **Fuga de Información Sensible (OWASP Sensitive Information Disclosure)** ocurre cuando un LLM revela datos confidenciales (PII, credenciales de API, claves de bases de datos o secretos de negocio) en sus respuestas a usuarios no autorizados, ya sea por inclusión directa en el contexto o por falta de filtrado en las salidas.
 
 #### Código Vulnerable: Inclusión de Secretos en el Contexto y Sin Filtrado de Salida
 
@@ -149,7 +149,7 @@ def consulta_vulnerable(pregunta_usuario: str) -> str:  # Definición de la func
 
 ---
 
-#### Código Seguro: Sanitización de Contexto y Filtrado de Salida (OWASP LLM06)
+#### Código Seguro: Sanitización de Contexto y Filtrado de Salida
 
 Esta solución aplica mitigaciones clave: minimización de datos en el origen (redacción previa de PII/secretos), aislamiento mediante roles y guardarraíl de filtrado de salida (Output Inspection).
 
@@ -268,9 +268,9 @@ def agente_administrador_vulnerable(solicitud_usuario: str) -> str:  # Función 
 
 ---
 
-#### Código Seguro: Menor Privilegio, Restricción Granular y Supervisión Humana (OWASP LLM08)
+#### Código Seguro: Menor Privilegio, Restricción Granular y Supervisión Humana
 
-La solución aplica los principios de mitigación para OWASP LLM08: sustitución de herramientas abiertas por funciones específicas de menor privilegio (Principio de Least Privilege), validación estricta de tipos e implementación de un guardarraíl de aprobación humana (Human-in-the-Loop) para acciones críticas.
+La solución aplica los principios de mitigación para OWASP: sustitución de herramientas abiertas por funciones específicas de menor privilegio (Principio de Least Privilege), validación estricta de tipos e implementación de un guardarraíl de aprobación humana (Human-in-the-Loop) para acciones críticas.
 
 ```python
 import json  # Importación de la librería para lectura y escritura de JSON
@@ -402,7 +402,7 @@ def cargar_modelo_vulnerable(url_terceros: str):  # Función para descargar y ca
 
 ---
 
-#### Código Seguro: Validación de Hash, Fuentes Confiables y Carga Restringida (OWASP LLM05)
+#### Código Seguro: Validación de Hash, Fuentes Confiables y Carga Restringida
 
 La solución aplica la verificación de origen mediante una lista blanca de repositorios (Whitelisting), validación de integridad criptográfica mediante firmas/hashes SHA-256 antes de la carga, y el uso de primitivas de carga seguras que deshabilitan la ejecución de código (como `weights_only=True` en PyTorch o la adopción del formato `safetensors`).
 
@@ -457,7 +457,7 @@ Este riesgo demuestra que la calidad y la seguridad de los datos están estrecha
 
 Los datos deben proceder de fuentes confiables, contar con controles de integridad y someterse a procesos de validación antes de incorporarse a los pipelines de inteligencia artificial.
 
-La vulnerabilidad de **Envenenamiento de Datos y Modelos (OWASP LLM03: Data and Model Poisoning)** ocurre cuando un atacante manipula el conjunto de datos de entrenamiento, ajuste fino (fine-tuning) o la base de conocimientos utilizada en RAG. Esto introduce sesgos, puertas traseras (*backdoors*), imprecisiones o comportamientos dañinos predecibles en el comportamiento baseline del modelo.
+La vulnerabilidad de **Envenenamiento de Datos y Modelos (OWASP: Data and Model Poisoning)** ocurre cuando un atacante manipula el conjunto de datos de entrenamiento, ajuste fino (fine-tuning) o la base de conocimientos utilizada en RAG. Esto introduce sesgos, puertas traseras (*backdoors*), imprecisiones o comportamientos dañinos predecibles en el comportamiento baseline del modelo.
 
 #### Código Vulnerable: Ingesta Directa de Datos Sin Validación ni Sanitización
 
@@ -481,7 +481,7 @@ def cargar_datos_entrenamiento_vulnerable(ruta_archivo: str) -> list:  # Funció
 
 ---
 
-#### Código Seguro: Validación de Esquema, Filtrado de Anomalías y Detección de Disparadores (OWASP LLM03)
+#### Código Seguro: Validación de Esquema, Filtrado de Anomalías y Detección de Disparadores
 
 La solución aplica controles de higiene de datos: validación estricta del esquema, sanitización de entradas, inspección de patrones sospechosos de puertas traseras (*backdoor triggers*), filtrado de anomalías de longitud y registro de auditoría de descartes.
 
@@ -555,7 +555,7 @@ Una aplicación que no establece límites adecuados podría ser utilizada para g
 
 Por ello, mecanismos como *rate limiting*, cuotas, presupuestos, límites de tokens, controles de concurrencia, monitoreo de consumo y mecanismos de detección de anomalías son elementos esenciales de una arquitectura segura.
 
-La vulnerabilidad de **Consumo Ilimitado (OWASP LLM10: Unbounded Consumption)** ocurre cuando una aplicación basada en LLM no impone límites al uso de recursos (frecuencia de peticiones, consumo de tokens, tiempo de respuesta o tamaño de entrada). Esto permite a atacantes provocar ataques de Denegación de Servicio (DoS), saturación de memoria/GPU o agotamiento financiero por consumo excesivo de la API.
+La vulnerabilidad de **Consumo Ilimitado (OWASP: Unbounded Consumption)** ocurre cuando una aplicación basada en LLM no impone límites al uso de recursos (frecuencia de peticiones, consumo de tokens, tiempo de respuesta o tamaño de entrada). Esto permite a atacantes provocar ataques de Denegación de Servicio (DoS), saturación de memoria/GPU o agotamiento financiero por consumo excesivo de la API.
 
 ## Código Vulnerable: Ausencia de Restricciones y Control de Recursos
 
@@ -579,7 +579,7 @@ def procesar_solicitud_vulnerable(entrada_usuario: str) -> str:  # Función de p
 
 ---
 
-#### Código Seguro: Rate Limiting, Cotas de Tokens y Timeouts (OWASP LLM10)
+#### Código Seguro: Rate Limiting, Cotas de Tokens y Timeouts
 
 Esta solución aplica mecanismos de defensa en profundidad: restricción de frecuencia por usuario (*rate limiting*), límites máximos de caracteres de entrada, acotamiento estricto de salida con `max_tokens` y *timeouts* en la conexión HTTP.
 
@@ -671,7 +671,7 @@ def responder_consulta_vulnerable(pregunta_usuario: str) -> str:  # Función par
 
 ---
 
-#### Código Seguro: Generación Aumentada por Recuperación (RAG) y Restricción Factual (OWASP LLM09)**
+#### Código Seguro: Generación Aumentada por Recuperación (RAG) y Restricción Factual**
 
 La solución aplica el patrón de Generación Aumentada por Recuperación (RAG), acoplamiento de datos auditados en tiempo real, temperatura determinista (`0.0`) y directivas de rechazo ante falta de evidencia en el contexto.
 
@@ -967,7 +967,7 @@ def generar_perfil_html_vulnerable(descripcion_usuario: str) -> str:  # Función
 
 ---
 
-#### Código Seguro: Sanitización y Codificación de Salida (OWASP LLM02)
+#### Código Seguro: Sanitización y Codificación de Salida
 
 La solución aplica defensas en la capa de salida: codificación de entidades HTML (`html.escape`), restricciones explícitas en el prompt de sistema y validación de tipos antes de renderizar el contenido en el sistema destino.
 
@@ -1034,7 +1034,7 @@ En todos estos escenarios existe una característica común: el modelo deja de s
 
 Consecuentemente, los principios de seguridad deben combinar controles tradicionales de ciberseguridad con controles específicos de IA. Entre ellos destacan el principio de mínimo privilegio, segregación de funciones, clasificación de datos, control de acceso, validación de entradas y salidas, monitoreo, pruebas adversariales, gestión de proveedores y supervisión humana.
 
-#### Referencias
+#### Referencias - oSWALDo
 
 > OWASP GenAI Security Project. *OWASP GenAI LLM Top 10 2026*. OWASP Foundation, 2026.
 
