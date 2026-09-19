@@ -16,7 +16,7 @@ En un entorno empresarial, un ataque de *Prompt Injection* podría alterar una r
 
 Por ello, una arquitectura segura debe asumir que los datos procesados por el modelo pueden ser manipulados y debe establecer controles fuera del propio modelo.
 
-La vulnerabilidad de **Prompt Injection (OWASP LLM01)** ocurre cuando una entrada no confiable enviada por un usuario altera la lógica, las instrucciones de sistema o el comportamiento esperado de un modelo de lenguaje (LLM).
+La vulnerabilidad de **Prompt Injection** ocurre cuando una entrada no confiable enviada por un usuario altera la lógica, las instrucciones de sistema o el comportamiento esperado de un modelo de lenguaje (LLM).
 
 #### Código Vulnerable: Concatenación Directa
 
