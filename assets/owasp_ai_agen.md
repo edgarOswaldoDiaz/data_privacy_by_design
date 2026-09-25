@@ -41,23 +41,23 @@ Mitigaciones aplicadas:
 
 import logging
 
-# Configuración de auditoría
+ Configuración de auditoría
 logging.basicConfig(
     level=logging.INFO,
     format="%(asctime)s - %(levelname)s - %(message)s"
 )
 
-# Objetivo autorizado del agente
+ Objetivo autorizado del agente
 AUTHORIZED_GOAL = "Generar reporte financiero"
 
-# Acciones permitidas
+ Acciones permitidas
 ALLOWED_ACTIONS = [
     "leer_datos_financieros",
     "generar_reporte",
     "calcular_metricas"
 ]
 
-# Indicadores comunes de intento de secuestro de objetivo
+ Indicadores comunes de intento de secuestro de objetivo
 SUSPICIOUS_PATTERNS = [
     "ignora las instrucciones",
     "cambia tu objetivo",
