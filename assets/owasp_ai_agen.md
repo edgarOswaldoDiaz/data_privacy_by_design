@@ -48,6 +48,7 @@ Validación rigurosa de herramientas y conexiones externas.
 Restricción de acciones críticas.
 Protección frente a instrucciones maliciosas o contextos manipulados.
 Gestión segura de memoria y contexto conversacional.
+
 Fase 3. Implementación de controles técnicos
 
 Se recomienda incorporar:
@@ -58,6 +59,7 @@ Sistemas de monitoreo y registro de actividades.
 Sandboxing para ejecución controlada de código.
 Validación continua de dependencias y componentes externos.
 Controles de aprobación humana (Human-in-the-Loop) para decisiones de alto impacto.
+
 Fase 4. Evaluación y pruebas de seguridad
 
 Antes de desplegar agentes en producción, es necesario ejecutar pruebas de penetración, simulaciones de ataques (red teaming) y validaciones específicas para las categorías de riesgo definidas por OWASP.
@@ -68,23 +70,21 @@ La operación segura incluye monitoreo continuo, detección temprana de anomalí
 
 Conclusiones
 
-La inteligencia artificial agéntica representa una de las innovaciones más significativas en la evolución de la IA moderna, permitiendo que los sistemas tomen decisiones y ejecuten acciones de forma autónoma. Sin embargo, esta capacidad incrementa considerablemente la superficie de ataque y genera riesgos que trascienden las amenazas tradicionales asociadas con los modelos de lenguaje.
+El framework OWASP Top 10 for Agentic Applications 2026 proporciona una referencia sólida para comprender los principales desafíos de seguridad en este nuevo ecosistema. Conceptos como Least Agency y Strong Observability emergen como pilares fundamentales para garantizar que la autonomía de los agentes permanezca bajo control y alineada con los objetivos organizacionales. La adopción exitosa de Agentic AI exige una aproximación multidisciplinaria que integre gobernanza, gestión de riesgos, arquitectura segura y monitoreo continuo. Las organizaciones que incorporen tempranamente estas prácticas estarán mejor preparadas para aprovechar los beneficios de la IA autónoma mientras minimizan los riesgos de seguridad, privacidad y cumplimiento normativo.
 
-El marco OWASP Top 10 for Agentic Applications 2026 proporciona una referencia sólida para comprender los principales desafíos de seguridad en este nuevo ecosistema. Conceptos como Least Agency y Strong Observability emergen como pilares fundamentales para garantizar que la autonomía de los agentes permanezca bajo control y alineada con los objetivos organizacionales.
 
-La adopción exitosa de Agentic AI exige una aproximación multidisciplinaria que integre gobernanza, gestión de riesgos, arquitectura segura y monitoreo continuo. Las organizaciones que incorporen tempranamente estas prácticas estarán mejor preparadas para aprovechar los beneficios de la IA autónoma mientras minimizan los riesgos de seguridad, privacidad y cumplimiento normativo.
 
-En conclusión, la seguridad en Agentic AI no debe considerarse una actividad posterior al desarrollo, sino un elemento estratégico que debe incorporarse desde el diseño inicial de los sistemas. La aplicación de los lineamientos propuestos por OWASP permitirá construir agentes más seguros, resilientes y confiables para los entornos empresariales del futuro.
+_______________
 
-Referencias bibliográficas (Formato APA 7.ª edición)
+Referencias 
 
-OWASP GenAI Security Project. (2025). OWASP Top 10 for Agentic Applications 2026. https://genai.owasp.org/resource/owasp-top-10-for-agentic-applications-for-2026/
+> OWASP GenAI Security Project. (2025). OWASP Top 10 for Agentic Applications 2026. https://genai.owasp.org/resource/owasp-top-10-for-agentic-applications-for-2026/
 
-OWASP GenAI Security Project. (2026). Agentic Security Initiative. https://genai.owasp.org/initiatives/agentic-security-initiative/
+> OWASP GenAI Security Project. (2026). Agentic Security Initiative. https://genai.owasp.org/initiatives/agentic-security-initiative/
 
-Lineation AI. (2025). OWASP Top 10 for Agentic Applications (2026). https://lineation.ai/owasp-top-10-agentic/
+> Lineation AI. (2025). OWASP Top 10 for Agentic Applications (2026). https://lineation.ai/owasp-top-10-agentic/
 
-Howroyd, R. (2026). OWASP Agentic AI Top 10: Every Risk Explained with Enterprise Mitigations. NeuralTrust. https://neuraltrust.ai/blog/owasp-agentic-ai-top-10
+> Howroyd, R. (2026). OWASP Agentic AI Top 10: Every Risk Explained with Enterprise Mitigations. NeuralTrust. https://neuraltrust.ai/blog/owasp-agentic-ai-top-10
 
-OWASP Foundation. (2026). OWASP Agentic Skills Top 10. GitHub. https://github.com/OWASP/www-project-agentic-skills-top-10
+> OWASP Foundation. (2026). OWASP Agentic Skills Top 10. GitHub. https://github.com/OWASP/www-project-agentic-skills-top-10
 
