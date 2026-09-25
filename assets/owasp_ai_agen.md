@@ -68,11 +68,9 @@ Fase 5. Operación y resiliencia
 
 La operación segura incluye monitoreo continuo, detección temprana de anomalías, respuesta a incidentes y mecanismos de recuperación ante fallos. La resiliencia es especialmente importante debido al riesgo de fallas en cascada y comportamientos emergentes de múltiples agentes interactuando entre sí.
 
-Conclusiones
-
-El framework OWASP Top 10 for Agentic Applications 2026 proporciona una referencia sólida para comprender los principales desafíos de seguridad en este nuevo ecosistema. Conceptos como Least Agency y Strong Observability emergen como pilares fundamentales para garantizar que la autonomía de los agentes permanezca bajo control y alineada con los objetivos organizacionales. La adopción exitosa de Agentic AI exige una aproximación multidisciplinaria que integre gobernanza, gestión de riesgos, arquitectura segura y monitoreo continuo. Las organizaciones que incorporen tempranamente estas prácticas estarán mejor preparadas para aprovechar los beneficios de la IA autónoma mientras minimizan los riesgos de seguridad, privacidad y cumplimiento normativo.
-
-
+Conclusión
+ 
+El framework OWASP Top 10 for Agentic Applications 2026 ofrece una referencia clave ante los desafíos de seguridad del sector. Principios como Least Agency y Strong Observability resultan indispensables para mantener bajo control la autonomía de los agentes. Una adopción exitosa requiere gobernanza, gestión de riesgos, arquitectura segura y monitoreo continuo.
 
 _______________
 
