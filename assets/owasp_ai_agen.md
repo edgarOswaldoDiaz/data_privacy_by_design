@@ -4,30 +4,29 @@ La adopción segura de Agentic AI requiere una estrategia integral que combine c
 
 **Vulnerabilidades**
 
-- **Vulnerabilidad Agent Goal Hijack**: El secuestro de objetivos ocurre cuando un atacante manipula las instrucciones, el contexto o las entradas de un agente de inteligencia artificial para alterar su propósito original. Como consecuencia, el agente puede ejecutar acciones distintas a las previstas, comprometiendo la seguridad, la integridad de los procesos y los objetivos organizacionales establecidos.
+- **Agent Goal Hijack**: El secuestro de objetivos ocurre cuando un atacante manipula las instrucciones, el contexto o las entradas de un agente de inteligencia artificial para alterar su propósito original. Como consecuencia, el agente puede ejecutar acciones distintas a las previstas, comprometiendo la seguridad, la integridad de los procesos y los objetivos organizacionales establecidos.
 
-- **VulnerabilidadTool Misuse and Exploitation**: Esta amenaza se presenta cuando un agente utiliza herramientas, aplicaciones o servicios externos de manera indebida debido a instrucciones maliciosas, errores de configuración o deficiencias de control. La explotación de herramientas puede provocar acceso no autorizado, modificación de datos, interrupciones operativas o ejecución de acciones perjudiciales para la organización.
+- **Misuse and Exploitation**: Esta amenaza se presenta cuando un agente utiliza herramientas, aplicaciones o servicios externos de manera indebida debido a instrucciones maliciosas, errores de configuración o deficiencias de control. La explotación de herramientas puede provocar acceso no autorizado, modificación de datos, interrupciones operativas o ejecución de acciones perjudiciales para la organización.
 
-- **VulnerabilidadAgent Identity and Privilege Abuse**: El abuso de identidad y privilegios sucede cuando un agente obtiene, hereda o utiliza permisos superiores a los estrictamente necesarios para realizar sus tareas. Esta situación puede facilitar accesos indebidos a recursos críticos, incrementar el impacto de ataques cibernéticos y comprometer la confidencialidad, integridad y disponibilidad de la información.
+- **Identity and Privilege Abuse**: El abuso de identidad y privilegios sucede cuando un agente obtiene, hereda o utiliza permisos superiores a los estrictamente necesarios para realizar sus tareas. Esta situación puede facilitar accesos indebidos a recursos críticos, incrementar el impacto de ataques cibernéticos y comprometer la confidencialidad, integridad y disponibilidad de la información.
 
-- **VulnerabilidadAgentic Supply Chain Vulnerabilities**: Las vulnerabilidades de la cadena de suministro agéntica surgen por la dependencia de modelos, bibliotecas, complementos, herramientas externas o proveedores de terceros. La incorporación de componentes comprometidos o inseguros puede introducir riesgos significativos, permitiendo manipulación, filtración de información, ejecución maliciosa o afectaciones a los sistemas conectados.
+- **Supply Chain Vulnerabilities**: Las vulnerabilidades de la cadena de suministro agéntica surgen por la dependencia de modelos, bibliotecas, complementos, herramientas externas o proveedores de terceros. La incorporación de componentes comprometidos o inseguros puede introducir riesgos significativos, permitiendo manipulación, filtración de información, ejecución maliciosa o afectaciones a los sistemas conectados.
 
-- **VulnerabilidadUnexpected Code Execution**: La ejecución inesperada de código ocurre cuando un agente procesa instrucciones o contenidos que desencadenan la ejecución automática de comandos no previstos. Esta condición puede derivar en vulnerabilidades críticas, acceso a recursos sensibles, alteración de configuraciones o compromisos de seguridad que afectan directamente la infraestructura tecnológica de la organización.
+- **Unexpected Code Execution**: La ejecución inesperada de código ocurre cuando un agente procesa instrucciones o contenidos que desencadenan la ejecución automática de comandos no previstos. Esta condición puede derivar en vulnerabilidades críticas, acceso a recursos sensibles, alteración de configuraciones o compromisos de seguridad que afectan directamente la infraestructura tecnológica de la organización.
 
-- **VulnerabilidadMemory and Context Poisoning**: El envenenamiento de memoria y contexto consiste en introducir información falsa, manipulada o maliciosa dentro de la memoria persistente o el contexto operativo de un agente. Como resultado, el sistema puede tomar decisiones incorrectas, generar respuestas engañosas o ejecutar acciones contrarias a los objetivos y políticas establecidos.
+- **Memory and Context Poisoning**: El envenenamiento de memoria y contexto consiste en introducir información falsa, manipulada o maliciosa dentro de la memoria persistente o el contexto operativo de un agente. Como resultado, el sistema puede tomar decisiones incorrectas, generar respuestas engañosas o ejecutar acciones contrarias a los objetivos y políticas establecidos.
 
-- **VulnerabilidadInsecure Inter-Agent Communication**: La comunicación insegura entre agentes se produce cuando los mecanismos de intercambio de información carecen de autenticación, cifrado o controles adecuados. Esta debilidad facilita la interceptación, alteración o falsificación de mensajes, generando riesgos de manipulación, pérdida de confianza y coordinación defectuosa entre los sistemas autónomos involucrados.
+- **Insecure Inter-Agent Communication**: La comunicación insegura entre agentes se produce cuando los mecanismos de intercambio de información carecen de autenticación, cifrado o controles adecuados. Esta debilidad facilita la interceptación, alteración o falsificación de mensajes, generando riesgos de manipulación, pérdida de confianza y coordinación defectuosa entre los sistemas autónomos involucrados.
 
-- **VulnerabilidadCascading Failures**: Las fallas en cascada ocurren cuando un error, vulnerabilidad o comportamiento inesperado en un agente se propaga a otros sistemas conectados. Debido a las interdependencias existentes, una incidencia inicial puede amplificarse rápidamente, causando interrupciones significativas, degradación de servicios y consecuencias operativas de gran alcance para la organización.
+- **Cascading Failures**: Las fallas en cascada ocurren cuando un error, vulnerabilidad o comportamiento inesperado en un agente se propaga a otros sistemas conectados. Debido a las interdependencias existentes, una incidencia inicial puede amplificarse rápidamente, causando interrupciones significativas, degradación de servicios y consecuencias operativas de gran alcance para la organización.
 
-- **VulnerabilidadHuman-Agent Trust Exploitation**: La explotación de la confianza humano-agente sucede cuando usuarios o administradores depositan una confianza excesiva en las recomendaciones, decisiones o acciones de un agente. Los atacantes pueden aprovechar esta situación para inducir errores, ocultar actividades maliciosas o influir negativamente en procesos críticos de toma de decisiones empresariales.
+- **Human-Agent Trust Exploitation**: La explotación de la confianza humano-agente sucede cuando usuarios o administradores depositan una confianza excesiva en las recomendaciones, decisiones o acciones de un agente. Los atacantes pueden aprovechar esta situación para inducir errores, ocultar actividades maliciosas o influir negativamente en procesos críticos de toma de decisiones empresariales.
 
-- **VulnerabilidadRogue Agents**: Los agentes descontrolados o maliciosos son sistemas que actúan fuera de los límites definidos por sus diseñadores, ya sea debido a errores, manipulación externa o comportamientos emergentes. Estos agentes pueden ejecutar acciones no autorizadas, incumplir políticas organizacionales, consumir recursos excesivos o causar daños significativos a la infraestructura tecnológica.
+- **Rogue Agents**: Los agentes descontrolados o maliciosos son sistemas que actúan fuera de los límites definidos por sus diseñadores, ya sea debido a errores, manipulación externa o comportamientos emergentes. Estos agentes pueden ejecutar acciones no autorizadas, incumplir políticas organizacionales, consumir recursos excesivos o causar daños significativos a la infraestructura tecnológica.
 
 ____________________
 
-
-Este ejemplo es con fines académicos considerando un script **autocontenido y deliberadamente vulnerable**. No realiza conexiones reales, no contiene credenciales y evita ejecutar acciones destructivas. Cada bloque representa una mala práctica que debe evitarse.
+Este ejemplo es un script **autocontenido y deliberadamente vulnerable**. No realiza conexiones reales, no contiene credenciales y evita ejecutar acciones destructivas. Cada bloque representa una mala práctica que debe evitarse.
 
 ```python
 # ================================================================
@@ -217,7 +216,7 @@ Antes de desplegar agentes en producción, es necesario ejecutar pruebas de pene
 
 La operación segura incluye monitoreo continuo, detección temprana de anomalías, respuesta a incidentes y mecanismos de recuperación ante fallos. La resiliencia es especialmente importante debido al riesgo de fallas en cascada y comportamientos emergentes de múltiples agentes interactuando entre sí.
 
-Conclusión
+**Conclusión**
  
 El framework OWASP Top 10 for Agentic Applications 2026 ofrece una referencia clave ante los desafíos de seguridad del sector. Principios como Least Agency y Strong Observability resultan indispensables para mantener bajo control la autonomía de los agentes. Una adopción exitosa requiere gobernanza, gestión de riesgos, arquitectura segura y monitoreo continuo.
 
