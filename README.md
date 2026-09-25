@@ -20,7 +20,7 @@ Temario
 - NIST AI RMF 1.0 
 - NIST AI 600-1 – GenAI Profile 
 - [OWASP Top 10 for LLM Applications](assets/OWASP_Top10_LLM_Applications.md) 
-- OWASP Agentic AI – Security 
+- [OWASP Agentic AI – Security](assets/owasp_ai_agen.md) 
 
 
 
