@@ -2,13 +2,7 @@
 
 La adopción segura de Agentic AI requiere una estrategia integral que combine controles técnicos, gobierno organizacional, monitoreo continuo y principios de seguridad por diseño. En este contexto, OWASP proporciona una guía fundamental para que las organizaciones identifiquen amenazas, establezcan mecanismos de mitigación y generen confianza en los sistemas autónomos de IA.
 
-**Metodología**
-
-La metodología propuesta para abordar la seguridad en entornos Agentic AI se basa en los principios establecidos por la iniciativa de seguridad agéntica de OWASP. Esta metodología contempla las siguientes etapas:
-
-**Identificación de activos y capacidades del agente**
-
-El primer paso consiste en definir claramente los recursos a los que tendrá acceso el agente, tales como bases de datos, APIs, aplicaciones empresariales y sistemas de terceros. Este análisis permite determinar el nivel de privilegios requerido y aplicar el principio de Least Agency, que extiende el concepto tradicional de mínimo privilegio al ámbito de la autonomía de los agentes.
+**Vulnerabilidades**
 
 - **Vulnerabilidad Agent Goal Hijack**: El secuestro de objetivos ocurre cuando un atacante manipula las instrucciones, el contexto o las entradas de un agente de inteligencia artificial para alterar su propósito original. Como consecuencia, el agente puede ejecutar acciones distintas a las previstas, comprometiendo la seguridad, la integridad de los procesos y los objetivos organizacionales establecidos.
 
