@@ -26,89 +26,28 @@ El primer paso consiste en definir claramente los recursos a los que tendrá acc
 
 - **VulnerabilidadCascading Failures**: Las fallas en cascada ocurren cuando un error, vulnerabilidad o comportamiento inesperado en un agente se propaga a otros sistemas conectados. Debido a las interdependencias existentes, una incidencia inicial puede amplificarse rápidamente, causando interrupciones significativas, degradación de servicios y consecuencias operativas de gran alcance para la organización.
 
-**VulnerabilidadHuman-Agent Trust Exploitation**: La explotación de la confianza humano-agente sucede cuando usuarios o administradores depositan una confianza excesiva en las recomendaciones, decisiones o acciones de un agente. Los atacantes pueden aprovechar esta situación para inducir errores, ocultar actividades maliciosas o influir negativamente en procesos críticos de toma de decisiones empresariales.
+- **VulnerabilidadHuman-Agent Trust Exploitation**: La explotación de la confianza humano-agente sucede cuando usuarios o administradores depositan una confianza excesiva en las recomendaciones, decisiones o acciones de un agente. Los atacantes pueden aprovechar esta situación para inducir errores, ocultar actividades maliciosas o influir negativamente en procesos críticos de toma de decisiones empresariales.
 
 - **VulnerabilidadRogue Agents**: Los agentes descontrolados o maliciosos son sistemas que actúan fuera de los límites definidos por sus diseñadores, ya sea debido a errores, manipulación externa o comportamientos emergentes. Estos agentes pueden ejecutar acciones no autorizadas, incumplir políticas organizacionales, consumir recursos excesivos o causar daños significativos a la infraestructura tecnológica.
 
 ____________________
 
 
-**Estrategia de Implementación**
-
-La implementación de un programa de seguridad para Agentic AI debe realizarse de manera gradual y alineada con la estrategia de transformación digital de la organización.
-
-Fase 1. Gobierno y políticas
-
-Se deben establecer políticas corporativas específicas para el uso de agentes de IA, definiendo responsabilidades, criterios de autorización, niveles de autonomía y mecanismos de auditoría. Asimismo, resulta fundamental integrar la gobernanza de IA con los programas existentes de ciberseguridad y gestión de riesgos.
-
-Fase 2. Diseño seguro (Secure by Design)
-
-Los agentes deben construirse utilizando principios de seguridad desde las primeras etapas del desarrollo. Esto incluye:
-
-Aplicación del principio de mínimo privilegio.
-Validación rigurosa de herramientas y conexiones externas.
-Restricción de acciones críticas.
-Protección frente a instrucciones maliciosas o contextos manipulados.
-Gestión segura de memoria y contexto conversacional.
-
-Fase 3. Implementación de controles técnicos
-
-Se recomienda incorporar:
-
-Gestión centralizada de identidades y accesos.
-Cifrado de información en tránsito y reposo.
-Sistemas de monitoreo y registro de actividades.
-Sandboxing para ejecución controlada de código.
-Validación continua de dependencias y componentes externos.
-Controles de aprobación humana (Human-in-the-Loop) para decisiones de alto impacto.
-
-Fase 4. Evaluación y pruebas de seguridad
-
-Antes de desplegar agentes en producción, es necesario ejecutar pruebas de penetración, simulaciones de ataques (red teaming) y validaciones específicas para las categorías de riesgo definidas por OWASP.
-
-Fase 5. Operación y resiliencia
-
-La operación segura incluye monitoreo continuo, detección temprana de anomalías, respuesta a incidentes y mecanismos de recuperación ante fallos. La resiliencia es especialmente importante debido al riesgo de fallas en cascada y comportamientos emergentes de múltiples agentes interactuando entre sí.
-
-Conclusión
- 
-El framework OWASP Top 10 for Agentic Applications 2026 ofrece una referencia clave ante los desafíos de seguridad del sector. Principios como Least Agency y Strong Observability resultan indispensables para mantener bajo control la autonomía de los agentes. Una adopción exitosa requiere gobernanza, gestión de riesgos, arquitectura segura y monitoreo continuo.
-
-_______________
-
-Referencias 
-
-> OWASP GenAI Security Project. (2025). OWASP Top 10 for Agentic Applications 2026. https://genai.owasp.org/resource/owasp-top-10-for-agentic-applications-for-2026/
-
-> OWASP GenAI Security Project. (2026). Agentic Security Initiative. https://genai.owasp.org/initiatives/agentic-security-initiative/
-
-> Lineation AI. (2025). OWASP Top 10 for Agentic Applications (2026). https://lineation.ai/owasp-top-10-agentic/
-
-> Howroyd, R. (2026). OWASP Agentic AI Top 10: Every Risk Explained with Enterprise Mitigations. NeuralTrust. https://neuraltrust.ai/blog/owasp-agentic-ai-top-10
-
-> OWASP Foundation. (2026). OWASP Agentic Skills Top 10. GitHub. https://github.com/OWASP/www-project-agentic-skills-top-10
-
-
-
-
-
-
-Tomando como referencia el **OWASP Top 10 for Agentic Applications**, las diez categorías que indicas corresponden a **ASI01–ASI10**. OWASP las plantea como riesgos propios de sistemas con capacidad de planificar, utilizar herramientas, mantener memoria, comunicarse con otros agentes y ejecutar acciones. ([OWASP Gen AI Security Project][1])
-
-Para que el ejemplo sea útil en capacitación, el siguiente script es **autocontenido y deliberadamente vulnerable**. No realiza conexiones reales, no contiene credenciales y evita ejecutar acciones destructivas. Cada bloque representa una mala práctica que debe evitarse.
+Este ejemplo es con fines académicos considerando un script **autocontenido y deliberadamente vulnerable**. No realiza conexiones reales, no contiene credenciales y evita ejecutar acciones destructivas. Cada bloque representa una mala práctica que debe evitarse.
 
 ```python
 # ================================================================
-# OWASP AGENTIC AI SECURITY - EJEMPLOS EDUCATIVOS DE VULNERABILIDADES
+#                  OWASP AGENTIC AI SECURITY 
 # ================================================================
 # Este archivo es un laboratorio educativo.
 # Todas las funciones muestran patrones INSEGUROS de diseño.
 # No se recomienda utilizar estas implementaciones en producción.
+# oswaldo.diaz@inegi.org.mx
 # ================================================================
 
 
 # ----------------------------------------------------------------
-# 1. ASI01 - AGENT GOAL HIJACK
+# AGENT GOAL HIJACK
 # ----------------------------------------------------------------
 def agent_goal_hijack(user_input):  # Vulnerabilidad ASI01: el objetivo del agente puede ser modificado por instrucciones no confiables.
     system_goal = "Generar un reporte público de indicadores."  # Vulnerabilidad ASI01: el objetivo original se almacena sin una política que impida su modificación.
@@ -118,7 +57,7 @@ def agent_goal_hijack(user_input):  # Vulnerabilidad ASI01: el objetivo del agen
 
 
 # ----------------------------------------------------------------
-# 2. ASI02 - TOOL MISUSE AND EXPLOITATION
+# TOOL MISUSE AND EXPLOITATION
 # ----------------------------------------------------------------
 def tool_misuse_and_exploitation(tool_name, tool_argument):  # Vulnerabilidad ASI02: el agente permite seleccionar herramientas y argumentos sin controles de autorización.
     tools = {"search": lambda x: f"Buscando: {x}", "delete": lambda x: f"Eliminando: {x}"}  # Vulnerabilidad ASI02: herramientas de distinto nivel de riesgo se exponen con el mismo nivel de confianza.
@@ -128,7 +67,7 @@ def tool_misuse_and_exploitation(tool_name, tool_argument):  # Vulnerabilidad AS
 
 
 # ----------------------------------------------------------------
-# 3. ASI03 - AGENT IDENTITY AND PRIVILEGE ABUSE
+# AGENT IDENTITY AND PRIVILEGE ABUSE
 # ----------------------------------------------------------------
 def agent_identity_and_privilege_abuse():  # Vulnerabilidad ASI03: el agente opera con una identidad privilegiada sin segmentación.
     agent_identity = "admin"  # Vulnerabilidad ASI03: se asigna una identidad administrativa al agente, violando el principio de mínimo privilegio.
@@ -138,7 +77,7 @@ def agent_identity_and_privilege_abuse():  # Vulnerabilidad ASI03: el agente ope
 
 
 # ----------------------------------------------------------------
-# 4. ASI04 - AGENTIC SUPPLY CHAIN VULNERABILITIES
+# AGENTIC SUPPLY CHAIN VULNERABILITIES
 # ----------------------------------------------------------------
 def agentic_supply_chain_vulnerabilities():  # Vulnerabilidad ASI04: el agente confía en componentes externos sin comprobar su integridad.
     plugin_name = "external_agent_plugin"  # Vulnerabilidad ASI04: se selecciona un componente externo sin identificar su procedencia.
@@ -150,7 +89,7 @@ def agentic_supply_chain_vulnerabilities():  # Vulnerabilidad ASI04: el agente c
 
 
 # ----------------------------------------------------------------
-# 5. ASI05 - UNEXPECTED CODE EXECUTION
+# UNEXPECTED CODE EXECUTION
 # ----------------------------------------------------------------
 def unexpected_code_execution():  # Vulnerabilidad ASI05: se permite que una instrucción controlada por texto termine convirtiéndose en código ejecutable.
     generated_expression = "2 + 2"  # Vulnerabilidad ASI05: se simula contenido generado dinámicamente que podría provenir de un agente.
@@ -159,7 +98,7 @@ def unexpected_code_execution():  # Vulnerabilidad ASI05: se permite que una ins
 
 
 # ----------------------------------------------------------------
-# 6. ASI06 - MEMORY AND CONTEXT POISONING
+# MEMORY AND CONTEXT POISONING
 # ----------------------------------------------------------------
 def memory_and_context_poisoning():  # Vulnerabilidad ASI06: información no confiable puede incorporarse a la memoria persistente del agente.
     memory = []  # Vulnerabilidad ASI06: la memoria se crea sin clasificación de confianza, origen o sensibilidad.
@@ -170,7 +109,7 @@ def memory_and_context_poisoning():  # Vulnerabilidad ASI06: información no con
 
 
 # ----------------------------------------------------------------
-# 7. ASI07 - INSECURE INTER-AGENT COMMUNICATION
+# INSECURE INTER-AGENT COMMUNICATION
 # ----------------------------------------------------------------
 def insecure_inter_agent_communication():  # Vulnerabilidad ASI07: los agentes intercambian mensajes sin autenticación ni integridad.
     message = {"from": "Agent-A", "instruction": "ejecutar_operacion"}  # Vulnerabilidad ASI07: el mensaje no incluye una firma ni una identidad verificable.
@@ -180,7 +119,7 @@ def insecure_inter_agent_communication():  # Vulnerabilidad ASI07: los agentes i
 
 
 # ----------------------------------------------------------------
-# 8. ASI08 - CASCADING FAILURES
+# CASCADING FAILURES
 # ----------------------------------------------------------------
 def cascading_failures():  # Vulnerabilidad ASI08: un error producido por un agente puede propagarse automáticamente a otros agentes.
     agent_a_result = "ERROR"  # Vulnerabilidad ASI08: el primer agente produce un resultado incorrecto o fallido.
@@ -190,7 +129,7 @@ def cascading_failures():  # Vulnerabilidad ASI08: un error producido por un age
 
 
 # ----------------------------------------------------------------
-# 9. ASI09 - HUMAN-AGENT TRUST EXPLOITATION
+# HUMAN-AGENT TRUST EXPLOITATION
 # ----------------------------------------------------------------
 def human_agent_trust_exploitation():  # Vulnerabilidad ASI09: una persona puede confiar excesivamente en una recomendación generada por el agente.
     agent_recommendation = "Aprobar automáticamente el cambio de configuración."  # Vulnerabilidad ASI09: el agente produce una recomendación de alto impacto.
@@ -201,7 +140,7 @@ def human_agent_trust_exploitation():  # Vulnerabilidad ASI09: una persona puede
 
 
 # ----------------------------------------------------------------
-# 10. ASI10 - ROGUE AGENTS
+# ROGUE AGENTS
 # ----------------------------------------------------------------
 def rogue_agents():  # Vulnerabilidad ASI10: el agente puede operar fuera de sus restricciones originales.
     intended_scope = ["consultar_reportes"]  # Vulnerabilidad ASI10: se define un alcance limitado para el comportamiento legítimo.
@@ -211,7 +150,7 @@ def rogue_agents():  # Vulnerabilidad ASI10: el agente puede operar fuera de sus
 
 
 # ----------------------------------------------------------------
-# EJECUCIÓN DEL LABORATORIO
+# Ejecución del Laboratorio experimental educativo 
 # ----------------------------------------------------------------
 if __name__ == "__main__":  # Este bloque permite ejecutar el archivo directamente como laboratorio independiente.
     print("\n=== ASI01: Agent Goal Hijack ===")  # Se identifica el primer escenario del laboratorio.
@@ -245,28 +184,59 @@ if __name__ == "__main__":  # Este bloque permite ejecutar el archivo directamen
     rogue_agents()  # Se simula la detección de una acción fuera del alcance autorizado.
 ```
 
-### Relación con OWASP
+__________________
 
-| OWASP     | Vulnerabilidad                       | Patrón vulnerable mostrado                                                    |
-| --------- | ------------------------------------ | ----------------------------------------------------------------------------- |
-| **ASI01** | Agent Goal Hijack                    | El objetivo puede ser sustituido por una entrada no confiable.                |
-| **ASI02** | Tool Misuse and Exploitation         | Las herramientas se ejecutan sin autorización contextual.                     |
-| **ASI03** | Agent Identity and Privilege Abuse   | Uso de identidad `admin` y privilegios excesivos.                             |
-| **ASI04** | Agentic Supply Chain Vulnerabilities | Dependencias externas sin versión fija ni verificación.                       |
-| **ASI05** | Unexpected Code Execution            | Conversión de texto en código mediante `eval()`.                              |
-| **ASI06** | Memory and Context Poisoning         | Información no confiable almacenada y reutilizada como contexto.              |
-| **ASI07** | Insecure Inter-Agent Communication   | Mensajes entre agentes sin autenticación o integridad.                        |
-| **ASI08** | Cascading Failures                   | Propagación automática de errores entre agentes.                              |
-| **ASI09** | Human-Agent Trust Exploitation       | Dependencia de la recomendación del agente para una decisión de alto impacto. |
-| **ASI10** | Rogue Agents                         | Acciones fuera del alcance previsto del agente.                               |
+**Estrategia de Implementación de un proceso para reducir riesgos**
 
-Estas denominaciones y su correspondencia con **ASI01–ASI10** están definidas por OWASP. OWASP también destaca que los riesgos agentic requieren controles sobre identidad, privilegios, herramientas, memoria, comunicación entre agentes y límites de autonomía. ([OWASP Gen AI Security Project][1])
+La implementación de un programa de seguridad para Agentic AI debe realizarse de manera gradual y alineada con la estrategia de transformación digital de la organización.
 
-Un punto especialmente importante para tu contexto de **datos y decisiones públicas** es que OWASP considera la memoria persistente y el contexto recuperado como superficies de ataque: información procedente de RAG, bases vectoriales, archivos, APIs o incluso otros agentes puede terminar influyendo en decisiones posteriores si no se valida y segmenta adecuadamente. ([OWASP Gen AI Security Project][2])
+**Fase 1. Gobierno y políticas**
 
-**Nota de seguridad:** el ejemplo de `eval()` es intencionalmente vulnerable. Aunque aquí sólo se evalúa `"2 + 2"`, en una aplicación real `eval()` no debe utilizarse para ejecutar contenido generado por usuarios o agentes.
+Se deben establecer políticas corporativas específicas para el uso de agentes de IA, definiendo responsabilidades, criterios de autorización, niveles de autonomía y mecanismos de auditoría. Asimismo, resulta fundamental integrar la gobernanza de IA con los programas existentes de ciberseguridad y gestión de riesgos.
 
-Puedo también convertir este ejemplo en una **segunda versión “OWASP Secure”**, donde cada uno de los 10 bloques muestre **vulnerabilidad → control preventivo → código corregido → buena práctica recomendada**.
+**Fase 2. Diseño seguro (Secure by Design)**
 
-[1]: https://genai.owasp.org/2025/12/09/owasp-top-10-for-agentic-applications-the-benchmark-for-agentic-security-in-the-age-of-autonomous-ai/?utm_source=chatgpt.com "OWASP Top 10 for Agentic Applications - The Benchmark for Agentic Security in the Age of Autonomous AI - OWASP Gen AI Security Project"
-[2]: https://genai.owasp.org/2026/05/13/memory-is-a-feature-it-is-also-an-attack-surface/?utm_source=chatgpt.com "Memory Is a Feature. It Is Also an Attack Surface - OWASP Gen AI Security Project"
+Los agentes deben construirse utilizando principios de seguridad desde las primeras etapas del desarrollo. Esto incluye:
+
+Aplicación del principio de mínimo privilegio.
+Validación rigurosa de herramientas y conexiones externas.
+Restricción de acciones críticas.
+Protección frente a instrucciones maliciosas o contextos manipulados.
+Gestión segura de memoria y contexto conversacional.
+
+**Fase 3. Implementación de controles técnicos**
+
+Se recomienda incorporar:
+
+Gestión centralizada de identidades y accesos.
+Cifrado de información en tránsito y reposo.
+Sistemas de monitoreo y registro de actividades.
+Sandboxing para ejecución controlada de código.
+Validación continua de dependencias y componentes externos.
+Controles de aprobación humana (Human-in-the-Loop) para decisiones de alto impacto.
+
+**Fase 4. Evaluación y pruebas de seguridad**
+
+Antes de desplegar agentes en producción, es necesario ejecutar pruebas de penetración, simulaciones de ataques (red teaming) y validaciones específicas para las categorías de riesgo definidas por OWASP.
+
+**Fase 5. Operación y resiliencia**
+
+La operación segura incluye monitoreo continuo, detección temprana de anomalías, respuesta a incidentes y mecanismos de recuperación ante fallos. La resiliencia es especialmente importante debido al riesgo de fallas en cascada y comportamientos emergentes de múltiples agentes interactuando entre sí.
+
+Conclusión
+ 
+El framework OWASP Top 10 for Agentic Applications 2026 ofrece una referencia clave ante los desafíos de seguridad del sector. Principios como Least Agency y Strong Observability resultan indispensables para mantener bajo control la autonomía de los agentes. Una adopción exitosa requiere gobernanza, gestión de riesgos, arquitectura segura y monitoreo continuo.
+
+_______________
+
+Referencias 
+
+> OWASP GenAI Security Project. (2025). OWASP Top 10 for Agentic Applications 2026. https://genai.owasp.org/resource/owasp-top-10-for-agentic-applications-for-2026/
+
+> OWASP GenAI Security Project. (2026). Agentic Security Initiative. https://genai.owasp.org/initiatives/agentic-security-initiative/
+
+> Lineation AI. (2025). OWASP Top 10 for Agentic Applications (2026). https://lineation.ai/owasp-top-10-agentic/
+
+> Howroyd, R. (2026). OWASP Agentic AI Top 10: Every Risk Explained with Enterprise Mitigations. NeuralTrust. https://neuraltrust.ai/blog/owasp-agentic-ai-top-10
+
+> OWASP Foundation. (2026). OWASP Agentic Skills Top 10. GitHub. https://github.com/OWASP/www-project-agentic-skills-top-10
