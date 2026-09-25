@@ -10,20 +10,48 @@ La metodología propuesta para abordar la seguridad en entornos Agentic AI se ba
 
 El primer paso consiste en definir claramente los recursos a los que tendrá acceso el agente, tales como bases de datos, APIs, aplicaciones empresariales y sistemas de terceros. Este análisis permite determinar el nivel de privilegios requerido y aplicar el principio de Least Agency, que extiende el concepto tradicional de mínimo privilegio al ámbito de la autonomía de los agentes.
 
-**Análisis de amenazas**
 
-Una vez identificados los activos, se realiza un proceso de modelado de amenazas considerando los riesgos definidos por OWASP:
+**Vulnerabilidad Agent Goal Hijack**
 
-- Agent Goal Hijack.
-- Tool Misuse and Exploitation.
-- Agent Identity and Privilege Abuse.
-- Agentic Supply Chain Vulnerabilities.
-- Unexpected Code Execution.
-- Memory and Context Poisoning.
-- Insecure Inter-Agent Communication.
-- Cascading Failures.
-- Human-Agent Trust Exploitation.
-- Rogue Agents.
+El secuestro de objetivos ocurre cuando un atacante manipula las instrucciones, el contexto o las entradas de un agente de inteligencia artificial para alterar su propósito original. Como consecuencia, el agente puede ejecutar acciones distintas a las previstas, comprometiendo la seguridad, la integridad de los procesos y los objetivos organizacionales establecidos.
+
+**VulnerabilidadTool Misuse and Exploitation**
+
+Esta amenaza se presenta cuando un agente utiliza herramientas, aplicaciones o servicios externos de manera indebida debido a instrucciones maliciosas, errores de configuración o deficiencias de control. La explotación de herramientas puede provocar acceso no autorizado, modificación de datos, interrupciones operativas o ejecución de acciones perjudiciales para la organización.
+
+**VulnerabilidadAgent Identity and Privilege Abuse**
+
+El abuso de identidad y privilegios sucede cuando un agente obtiene, hereda o utiliza permisos superiores a los estrictamente necesarios para realizar sus tareas. Esta situación puede facilitar accesos indebidos a recursos críticos, incrementar el impacto de ataques cibernéticos y comprometer la confidencialidad, integridad y disponibilidad de la información.
+
+**VulnerabilidadAgentic Supply Chain Vulnerabilities**
+
+Las vulnerabilidades de la cadena de suministro agéntica surgen por la dependencia de modelos, bibliotecas, complementos, herramientas externas o proveedores de terceros. La incorporación de componentes comprometidos o inseguros puede introducir riesgos significativos, permitiendo manipulación, filtración de información, ejecución maliciosa o afectaciones a los sistemas conectados.
+
+**VulnerabilidadUnexpected Code Execution**
+
+La ejecución inesperada de código ocurre cuando un agente procesa instrucciones o contenidos que desencadenan la ejecución automática de comandos no previstos. Esta condición puede derivar en vulnerabilidades críticas, acceso a recursos sensibles, alteración de configuraciones o compromisos de seguridad que afectan directamente la infraestructura tecnológica de la organización.
+
+**VulnerabilidadMemory and Context Poisoning**
+
+El envenenamiento de memoria y contexto consiste en introducir información falsa, manipulada o maliciosa dentro de la memoria persistente o el contexto operativo de un agente. Como resultado, el sistema puede tomar decisiones incorrectas, generar respuestas engañosas o ejecutar acciones contrarias a los objetivos y políticas establecidos.
+
+**VulnerabilidadInsecure Inter-Agent Communication**
+
+La comunicación insegura entre agentes se produce cuando los mecanismos de intercambio de información carecen de autenticación, cifrado o controles adecuados. Esta debilidad facilita la interceptación, alteración o falsificación de mensajes, generando riesgos de manipulación, pérdida de confianza y coordinación defectuosa entre los sistemas autónomos involucrados.
+
+**VulnerabilidadCascading Failures**
+
+Las fallas en cascada ocurren cuando un error, vulnerabilidad o comportamiento inesperado en un agente se propaga a otros sistemas conectados. Debido a las interdependencias existentes, una incidencia inicial puede amplificarse rápidamente, causando interrupciones significativas, degradación de servicios y consecuencias operativas de gran alcance para la organización.
+
+**VulnerabilidadHuman-Agent Trust Exploitation**
+
+La explotación de la confianza humano-agente sucede cuando usuarios o administradores depositan una confianza excesiva en las recomendaciones, decisiones o acciones de un agente. Los atacantes pueden aprovechar esta situación para inducir errores, ocultar actividades maliciosas o influir negativamente en procesos críticos de toma de decisiones empresariales.
+
+**VulnerabilidadRogue Agents**
+
+Los agentes descontrolados o maliciosos son sistemas que actúan fuera de los límites definidos por sus diseñadores, ya sea debido a errores, manipulación externa o comportamientos emergentes. Estos agentes pueden ejecutar acciones no autorizadas, incumplir políticas organizacionales, consumir recursos excesivos o causar daños significativos a la infraestructura tecnológica.
+
+____________________
 
 **Evaluación de riesgos**: Cada amenaza debe analizarse considerando su probabilidad de ocurrencia y su impacto sobre la confidencialidad, integridad y disponibilidad de la información. La priorización de riesgos facilita la asignación eficiente de recursos de seguridad.
 
