@@ -26,7 +26,7 @@ La adopción segura de Agentic AI requiere una estrategia integral que combine c
 
 ____________________
 
-Este ejemplo es un script **autocontenido y deliberadamente vulnerable**. No realiza conexiones reales, no contiene credenciales y evita ejecutar acciones destructivas. Cada bloque representa una mala práctica que debe evitarse.
+Este ejemplo es un script **autocontenido**. No realiza conexiones reales, no contiene credenciales y evita ejecutar acciones destructivas. Cada bloque representa una mala práctica que debe evitarse.
 
 ```python
 # ================================================================
