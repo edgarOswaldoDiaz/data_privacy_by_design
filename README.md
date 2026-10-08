@@ -4,7 +4,7 @@ Este repositorio reúne principios, prácticas, referencias y recursos orientado
 
 Temario
 
-- LFPDPPP – México. 
+- [LFPDPPP – México](assets/LFPDPPP–México.md)
 - Ley General de Protección de Datos Personales en Posesión de Sujetos Obligados. 
 - Regulación GDPR / RGPD 
 - Regulación EU AI Act.   
