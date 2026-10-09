@@ -208,4 +208,3 @@ La idea principal es que **tener acceso a los datos no significa tener libertad 
 
 - Cámara de Diputados del H. Congreso de la Unión. *Ley General de Protección de Datos Personales en Posesión de Sujetos Obligados*. [Consultar documento oficial](https://www.diputados.gob.mx/LeyesBiblio/pdf/LGPDPPSO.pdf).
 
-**Nota:** Para confirmar artículos, excepciones, plazos y autoridades competentes, se debe consultar el texto vigente de la ley y las disposiciones aplicables al caso concreto.
