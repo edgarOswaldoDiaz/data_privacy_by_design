@@ -1,8 +1,5 @@
 # Ley General de Protección de Datos Personales en Posesión de Sujetos Obligados (LGPDPPSO)
 
-**Fuente oficial:** [Cámara de Diputados — LGPDPPSO](https://www.diputados.gob.mx/LeyesBiblio/pdf/LGPDPPSO.pdf)
-
-**Versión de referencia:** Última reforma publicada en el Diario Oficial de la Federación el 14 de noviembre de 2025.
 
 ## 1. Introducción
 
