@@ -1,15 +1,12 @@
 # Ley General de Protección de Datos Personales en Posesión de Sujetos Obligados (LGPDPPSO)
 
-
-## 1. Introducción
-
 La Ley General de Protección de Datos Personales en Posesión de Sujetos Obligados (LGPDPPSO) establece las bases, principios y procedimientos para proteger los datos personales tratados por los sujetos obligados del ámbito público comprendidos en la legislación.
 
 Su objetivo es regular el tratamiento de esta información, establecer obligaciones para las instituciones responsables y garantizar mecanismos para que las personas puedan ejercer sus derechos.
 
 La protección de datos es importante porque las instituciones públicas recopilan información para realizar trámites, prestar servicios, administrar programas sociales y elaborar estadísticas. Por ejemplo, al solicitar una beca, una persona puede proporcionar su nombre, domicilio e información socioeconómica. Estos datos deben utilizarse conforme a la ley y protegerse frente a accesos o divulgaciones indebidas.
 
-## 2. Sujetos obligados
+## Sujetos obligados
 
 La LGPDPPSO se aplica a los sujetos obligados del ámbito público comprendidos en la legislación, como autoridades, dependencias, entidades, órganos e instituciones públicas.
 
@@ -33,11 +30,11 @@ Por ejemplo, un ayuntamiento que administra un programa de apoyos económicos de
 
 La ley aplicable depende de quién trata los datos y de las circunstancias del tratamiento.
 
-## 3. Datos personales protegidos
+## Datos personales protegidos
 
 Los datos personales son información relacionada con una persona identificada o identificable.
 
-### 3.1. Datos personales
+### Datos personales
 
 Algunos ejemplos son:
 
@@ -47,7 +44,7 @@ Algunos ejemplos son:
 - CURP y otros identificadores.
 - Información laboral y económica.
 
-### 3.2. Datos personales sensibles
+### Datos personales sensibles
 
 Son datos que requieren especial protección porque su uso indebido puede provocar discriminación o afectar significativamente la privacidad de una persona.
 
@@ -55,13 +52,7 @@ Algunos ejemplos son los datos relacionados con la salud, la información genét
 
 Por ejemplo, los expedientes de una institución pública de salud pueden contener diagnósticos y tratamientos que deben protegerse mediante controles de acceso y medidas de seguridad.
 
-### 3.3. Datos estadísticos
-
-La información agregada que no permite identificar a una persona puede tener un tratamiento diferente al de los registros individuales. Por ejemplo, publicar el número de beneficiarios por municipio puede permitir analizar un programa sin divulgar los nombres de cada persona.
-
-Sin embargo, eliminar el nombre no garantiza por sí solo el anonimato. La combinación de variables puede facilitar la identificación indirecta, por lo que debe evaluarse ese riesgo.
-
-## 4. Principios del tratamiento de datos personales
+## Principios del tratamiento de datos personales
 
 La ley establece ocho principios que orientan el tratamiento de los datos personales.
 
@@ -78,29 +69,29 @@ La ley establece ocho principios que orientan el tratamiento de los datos person
 
 Por ejemplo, si una institución necesita calcular el número de beneficiarios de un programa por municipio, puede ser suficiente utilizar datos agregados, sin procesar nombres y domicilios. Esto se relaciona con el principio de proporcionalidad.
 
-## 5. Obligaciones de los sujetos obligados
+## Obligaciones de los sujetos obligados
 
 Las instituciones deben implementar medidas para proteger los datos durante su recopilación, almacenamiento, consulta, utilización y transferencia.
 
-### 5.1. Medidas administrativas
+### Medidas administrativas
 
 Incluyen políticas internas, capacitación, asignación de responsabilidades y procedimientos para controlar el acceso a la información.
 
-### 5.2. Medidas físicas
+### Medidas físicas
 
 Protegen los documentos, instalaciones y equipos. Algunos ejemplos son restringir el acceso a archivos físicos y controlar la entrada a áreas donde se almacenan servidores.
 
-### 5.3. Medidas técnicas
+### Medidas técnicas
 
 Incluyen controles tecnológicos como contraseñas seguras, permisos de usuario, cifrado, respaldos y registros de acceso, según los riesgos existentes.
 
-### 5.4. Confidencialidad
+### Confidencialidad
 
 Las personas que acceden a datos personales por sus funciones deben evitar su divulgación indebida.
 
 Por ejemplo, un trabajador no debe descargar y compartir una base de datos de beneficiarios con personas no autorizadas. La protección de la información requiere tanto medidas tecnológicas como procedimientos organizativos.
 
-## 6. Derechos ARCO
+## Derechos ARCO
 
 Los derechos ARCO permiten que las personas ejerzan control sobre sus datos personales.
 
@@ -118,7 +109,7 @@ Los derechos ARCO permiten que las personas ejerzan control sobre sus datos pers
 
 El ejercicio de estos derechos requiere presentar una solicitud conforme al procedimiento establecido. La institución debe analizarla y responder dentro de los plazos legales. La cancelación y la oposición no proceden automáticamente en todos los casos, ya que pueden existir excepciones u obligaciones legales de conservación.
 
-## 7. Transferencias de datos personales
+## Transferencias de datos personales
 
 Una transferencia consiste en comunicar o proporcionar datos personales a otra persona o entidad conforme a las condiciones legales aplicables.
 
@@ -134,7 +125,7 @@ Antes de compartir datos, es necesario verificar:
 
 Por ejemplo, si dos dependencias necesitan intercambiar información para verificar los requisitos de un programa social, deben determinar qué datos son indispensables y cómo se protegerán.
 
-## 8. Supervisión y cumplimiento
+## Supervisión y cumplimiento
 
 La protección de datos requiere procedimientos institucionales que permitan cumplir la ley, atender solicitudes y revisar las obligaciones correspondientes.
 
@@ -144,7 +135,7 @@ También existen mecanismos de revisión y autoridades competentes conforme al m
 
 El cumplimiento implica capacitar al personal, establecer controles, evaluar riesgos y revisar periódicamente las medidas de seguridad.
 
-## 9. Incumplimientos y posibles responsabilidades
+## Incumplimientos y posibles responsabilidades
 
 El incumplimiento de las obligaciones de protección de datos puede generar consecuencias legales, según las circunstancias y el régimen aplicable.
 
@@ -160,7 +151,7 @@ Por ejemplo, si una persona publica en redes sociales una base de datos con nomb
 
 Por ello, las instituciones deben prevenir incidentes, establecer controles y actuar conforme a las obligaciones legales cuando ocurran.
 
-## 10. Aplicación en la Ciencia de Datos
+## Aplicación en la Ciencia de Datos
 
 La LGPDPPSO se relaciona con la Ciencia de Datos porque las instituciones utilizan información para elaborar indicadores, identificar patrones, evaluar programas y apoyar la toma de decisiones.
 
@@ -196,7 +187,7 @@ Si el objetivo es calcular totales por municipio, puede ser suficiente trabajar 
 
 La protección debe considerarse desde el inicio del proyecto y no únicamente cuando se publica el resultado. Eliminar nombres tampoco garantiza por sí solo que los datos sean anónimos, ya que pueden existir riesgos de identificación mediante la combinación de variables.
 
-## 11. Conclusión
+## Conclusión
 
 La LGPDPPSO establece reglas para proteger los datos personales tratados por los sujetos obligados del ámbito público. Sus disposiciones comprenden principios, obligaciones de seguridad, derechos ARCO, transferencias de información y mecanismos de supervisión y cumplimiento.
 
@@ -204,7 +195,7 @@ En la Ciencia de Datos, esta legislación es relevante porque el análisis de in
 
 La idea principal es que **tener acceso a los datos no significa tener libertad para utilizarlos de cualquier manera**. Cada proyecto debe considerar su finalidad, el fundamento jurídico, la necesidad de la información, las medidas de seguridad y los posibles riesgos para las personas titulares.
 
-## 12. Fuente de consulta
+## Referencia
 
 - Cámara de Diputados del H. Congreso de la Unión. *Ley General de Protección de Datos Personales en Posesión de Sujetos Obligados*. [Consultar documento oficial](https://www.diputados.gob.mx/LeyesBiblio/pdf/LGPDPPSO.pdf).
 
