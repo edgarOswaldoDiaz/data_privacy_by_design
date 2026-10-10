@@ -40,6 +40,3 @@ La empresa debe evaluar el sistema, revisar la calidad de los datos, detectar po
 
 Este ejemplo muestra cómo el AI Act establece obligaciones para determinados sistemas de inteligencia artificial que pueden afectar los derechos y las oportunidades de las personas. Su finalidad no es prohibir el uso de IA en la contratación, sino establecer condiciones para que estos sistemas sean más seguros, transparentes y supervisados.
 
-**Fuente:** Reglamento (UE) 2024/1689, artículo 6 y Anexo III, apartado 4, relativo al empleo, la gestión de los trabajadores y el acceso al trabajo por cuenta propia.
-
-Texto oficial: https://eur-lex.europa.eu/legal-content/ES/TXT/?uri=CELEX:32024R1689
