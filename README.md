@@ -24,7 +24,6 @@ Temario
 - [OWASP Agentic AI – Security](assets/owasp_ai_agen.md) 
 
 
-
 ________________________
 ####  Maestría en Ciencia de Datos | Universidad de la Ciudad de Aguascalientes
 
