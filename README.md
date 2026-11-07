@@ -11,7 +11,7 @@ Temario
 - [Principios OECD Privacy Guidelines](assets/PrincipiosOECDPrivacyGuidelines.md) | [Caso de uso](assets/PrincipiosOECDPrivacyGuidelines_casodeuso.md) | [Diagrama](assets/Diagrama_Principios_OECD_Privacy_Guidelines.png)
 - [Principios OECD AI Principles](assets/PrincipiosOECDAIPrinciples.md) | [Caso de uso](assets/PrincipiosOECDAIPrinciples_casodeuso.md) | [Diagrama](assets/Diagrama_Principios_OECD_AI_Principles.png)
 - [ISO/IEC 27001:2022](assets/ISO-27001.md) 
-- ISO/IEC 27701:2025 
+- [ISO/IEC 27701:2025](assets/ISO-27701.md) 
 - ISO/IEC 27018:2025 
 - ISO/IEC 42001:2023 
 - ISO/IEC 23894:2023 
