@@ -16,7 +16,7 @@ Temario
 - [ISO/IEC 42001:2023](assets/ISO-42001.md) 
 - [ISO/IEC 23894:2023](assets/ISO-23894.md) 
 - [ISO/IEC 31700-1:2023](assets/ISO-31700.md)
-- ISO/IEC 38505-1:2026
+- [ISO/IEC 38505-1:2026](assets/ISO-38505.md)
 - NIST Privacy Framework 
 - NIST AI RMF 1.0 
 - NIST AI 600-1 – GenAI Profile 
