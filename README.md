@@ -15,7 +15,7 @@ Temario
 - [ISO/IEC 27018:2025](assets/ISO-27018.md) 
 - [ISO/IEC 42001:2023](assets/ISO-42001.md) 
 - [ISO/IEC 23894:2023](assets/ISO-23894.md) 
-- ISO/IEC 31700-1:2023
+- [ISO/IEC 31700-1:2023](assets/ISO-31700.md)
 - ISO/IEC 38505-1:2026
 - NIST Privacy Framework 
 - NIST AI RMF 1.0 
