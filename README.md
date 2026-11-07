@@ -17,9 +17,9 @@ Temario
 - [ISO/IEC 23894:2023](assets/ISO-23894.md) 
 - [ISO/IEC 31700-1:2023](assets/ISO-31700.md)
 - [ISO/IEC 38505-1:2026](assets/ISO-38505.md)
-- NIST Privacy Framework 
-- NIST AI RMF 1.0 
-- NIST AI 600-1 – GenAI Profile 
+- [NIST Privacy Framework](assets/NIST_Indice.md) 
+- [NIST AI RMF 1.0](assets/NIST_Indice.md) 
+- [NIST AI 600-1 – GenAI Profile](assets/NIST_Indice.md) 
 - [OWASP Top 10 for LLM Applications](assets/OWASP_Top10_LLM_Applications.md) 
 - [OWASP Agentic AI – Security](assets/owasp_ai_agen.md) 
 
