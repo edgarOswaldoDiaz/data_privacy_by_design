@@ -1,58 +1,58 @@
-# Caso de uso 1. MediSalud Integral
+# Caso de uso 1. Hospital Público Vida Digna
 
 ## 1. Contexto
 
-MediSalud Integral, S.A. de C.V., es una empresa privada que ofrece consultas médicas presenciales y en línea. Para prestar sus servicios recopila nombres, domicilios, teléfonos, antecedentes clínicos, diagnósticos, resultados de laboratorio y tratamientos de sus pacientes.
+El Hospital Público Vida Digna es una institución de salud que proporciona atención médica a la población. Para prestar sus servicios recopila nombres, CURP, domicilios, diagnósticos, antecedentes médicos, resultados de laboratorio y tratamientos.
 
-La empresa utiliza una plataforma digital para almacenar expedientes médicos y compartir información entre sus especialistas.
+Esta información se almacena en un sistema electrónico de expedientes clínicos al que acceden médicos, enfermeras y personal administrativo.
 
-## 2. Problema empresarial
+## 2. Problema institucional
 
-Durante una revisión interna se descubre que todos los empleados administrativos pueden consultar expedientes clínicos completos, aunque sus funciones no requieren acceder a información médica.
+Durante una auditoría se descubre que los empleados administrativos pueden consultar expedientes clínicos completos, aunque sus funciones únicamente requieren verificar datos de identificación y citas.
 
-Además, la empresa no cuenta con mecanismos adecuados para obtener y documentar el consentimiento de los pacientes para el tratamiento de sus datos sensibles.
+Además, algunos trabajadores comparten información médica mediante aplicaciones de mensajería personal.
 
-Esta situación representa un riesgo de acceso no autorizado, uso indebido de información médica y vulneración de la privacidad.
+Estas prácticas generan riesgos de acceso no autorizado y divulgación de datos personales sensibles.
 
 ## 3. Solución propuesta
 
-- Clasificar los datos personales según su naturaleza y sensibilidad.
-- Implementar controles de acceso basados en las funciones del personal.
-- Obtener el consentimiento expreso y por escrito cuando sea legalmente exigible.
-- Actualizar el aviso de privacidad para informar las finalidades del tratamiento.
-- Cifrar los expedientes electrónicos y registrar los accesos.
-- Capacitar al personal sobre confidencialidad y protección de datos.
+- Clasificar la información según su sensibilidad.
+- Establecer permisos de acceso por función.
+- Implementar autenticación multifactor.
+- Cifrar los expedientes electrónicos.
+- Prohibir el uso de canales no autorizados para compartir información clínica.
+- Registrar los accesos y capacitar al personal.
+- Revisar las condiciones legales del tratamiento de datos sensibles.
 
-## 4. Aplicación de la LFPDPPP
+## 4. Aplicación de la LGPDPPSO
 
-**Artículo 5:** obliga a observar los principios de protección de datos personales.
+**Principio de licitud:** el hospital debe tratar los datos dentro de sus atribuciones legales.
 
-**Artículo 7:** regula el consentimiento del titular.
+**Principio de finalidad:** la información clínica debe utilizarse para las finalidades legítimas de atención médica y demás usos legalmente permitidos.
 
-**Artículo 8:** establece requisitos específicos para el tratamiento de datos personales sensibles.
+**Principio de proporcionalidad:** cada trabajador debe acceder únicamente a los datos necesarios para sus funciones.
 
-**Artículo 9:** contempla excepciones al consentimiento, incluidas determinadas situaciones de atención médica.
+**Deber de seguridad:** deben establecerse medidas administrativas, físicas y técnicas para proteger la información.
 
-**Artículo 13:** exige adoptar medidas para garantizar el cumplimiento de los principios de protección de datos.
-
-La empresa debe garantizar que la información médica sea utilizada únicamente para finalidades legítimas y por personal autorizado.
+**Deber de confidencialidad:** el personal autorizado debe evitar la divulgación indebida de datos.
 
 ## 5. Valor agregado
 
-La implementación de estas medidas permite reducir riesgos de divulgación de información clínica, fortalecer la confianza de los pacientes y mejorar la gestión de expedientes médicos.
+El hospital mejora la seguridad de sus expedientes, reduce el riesgo de filtraciones y fortalece la confianza de los pacientes.
 
 ## 6. Preguntas para un sistema RAG
 
-1. ¿Qué requisitos establece la LFPDPPP para tratar datos personales sensibles?
-2. ¿En qué situaciones puede tratarse información médica sin consentimiento?
-3. ¿Qué principios deben respetar las clínicas privadas?
-4. ¿Qué obligaciones tiene una empresa que almacena expedientes clínicos?
-5. ¿Qué medidas deben implementarse para evitar accesos no autorizados?
+1. ¿Qué obligaciones tienen los hospitales públicos respecto de los datos sensibles?
+2. ¿Cuándo puede tratarse información médica sin consentimiento?
+3. ¿Qué medidas de seguridad deben implementarse?
+4. ¿Puede el personal administrativo consultar expedientes clínicos completos?
+5. ¿Qué establece la ley sobre la confidencialidad de los datos?
 
 ## 7. Resultados esperados
 
-MediSalud Integral establece permisos diferenciados, documenta los consentimientos necesarios y mejora la seguridad de sus expedientes electrónicos.
+El hospital implementa permisos diferenciados, fortalece sus controles de seguridad y establece procedimientos para compartir información clínica de manera autorizada.
 
 ## 8. Conclusión
 
-La protección de los datos médicos requiere medidas especiales debido a su sensibilidad. El cumplimiento de la LFPDPPP permite proteger la privacidad de los pacientes y establecer procedimientos adecuados para el tratamiento de su información.
+Las instituciones públicas de salud deben garantizar que la información médica se utilice de manera legítima, proporcional y segura, evitando accesos innecesarios y divulgaciones no autorizadas.
+
